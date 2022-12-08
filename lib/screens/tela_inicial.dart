@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:measure_tracker/widgets/container_de_info.dart';
 
 class TelaInicial extends StatelessWidget {
   const TelaInicial({super.key});
@@ -9,10 +10,12 @@ class TelaInicial extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Text(
-              'Olá Usuário',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 32),
+              child: Text(
+                'Olá Usuário!',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
             ),
             const ContainerDeInfo(),
           ],
