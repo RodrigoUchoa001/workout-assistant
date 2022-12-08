@@ -20,7 +20,7 @@ class ContainerDeInfo extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
+        color: corDeFundo,
         borderRadius: BorderRadius.circular(17),
       ),
       child: conteudo,
