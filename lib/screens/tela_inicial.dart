@@ -13,6 +13,8 @@ class TelaInicial extends StatelessWidget {
               'Olá Usuário',
               style: Theme.of(context).textTheme.titleMedium,
             ),
+            ),
+            const ContainerDeInfo(),
           ],
         ),
       ),
