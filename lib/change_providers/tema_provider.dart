@@ -22,6 +22,11 @@ class Temas {
         fontSize: 32,
         fontWeight: FontWeight.bold,
       ),
+      bodyMedium: TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
     ),
   );
 }
