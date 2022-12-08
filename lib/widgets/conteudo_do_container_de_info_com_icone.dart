@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// DEIXE O SUBTITULO COMO ' ' PARA N APARECER.
 class ConteudoDoContainerDeInfoComIcone extends StatelessWidget {
   final IconData icone;
   final String titulo;
@@ -33,13 +34,14 @@ class ConteudoDoContainerDeInfoComIcone extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(titulo),
-                  Text(
-                    subtitulo,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(fontWeight: FontWeight.normal),
-                  ),
+                  if (subtitulo != '')
+                    Text(
+                      subtitulo,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(fontWeight: FontWeight.normal),
+                    ),
                 ],
               ),
               acao,
