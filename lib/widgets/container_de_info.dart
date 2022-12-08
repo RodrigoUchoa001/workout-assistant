@@ -1,58 +1,29 @@
 import 'package:flutter/material.dart';
 
 class ContainerDeInfo extends StatelessWidget {
-  const ContainerDeInfo({super.key});
+  final Color corDeFundo;
+  final Widget conteudo;
+  final double comprimento;
+  const ContainerDeInfo(
+      {super.key,
+      required this.corDeFundo,
+      required this.conteudo,
+      this.comprimento = 0});
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return Container(
       height: 100,
+      width: (comprimento == 0 ? width : comprimento),
       margin: const EdgeInsets.symmetric(horizontal: 16),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor,
         borderRadius: BorderRadius.circular(17),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(right: 16),
-            child: Icon(
-              Icons.notifications_none,
-              size: 48,
-            ),
-          ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text('Data da próxima atualização:'),
-                    Text(
-                      '6 de janeiro de 2023',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(fontWeight: FontWeight.normal),
-                    ),
-                  ],
-                ),
-                Text(
-                  'Você será notificado em 3 dias',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(fontWeight: FontWeight.normal),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
+      child: conteudo,
     );
   }
 }
