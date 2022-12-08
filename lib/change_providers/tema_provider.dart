@@ -16,6 +16,7 @@ class Temas {
     colorScheme: const ColorScheme.light(),
     scaffoldBackgroundColor: const Color(0xFFFFFFFF),
     primaryColor: const Color(0xFFFEFFB9),
+    focusColor: const Color(0xFF799FFF),
     textTheme: const TextTheme(
       titleMedium: TextStyle(
         fontFamily: 'Inter',
