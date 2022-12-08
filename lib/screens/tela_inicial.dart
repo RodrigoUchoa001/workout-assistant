@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:measure_tracker/widgets/container_de_info.dart';
+import 'package:measure_tracker/widgets/conteudo_do_container_de_info_com_icone.dart';
 
 class TelaInicial extends StatelessWidget {
   const TelaInicial({super.key});
@@ -17,7 +18,21 @@ class TelaInicial extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
-            const ContainerDeInfo(),
+            ContainerDeInfo(
+              corDeFundo: Theme.of(context).primaryColor,
+              conteudo: ConteudoDoContainerDeInfoComIcone(
+                icone: Icons.notifications_none,
+                titulo: 'Data da próxima atualização:',
+                subtitulo: '6 de janeiro de 2023',
+                acao: Text(
+                  'Você será notificado em 3 dias.',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontWeight: FontWeight.normal, fontSize: 14),
+                ),
+              ),
+            ),
           ],
         ),
       ),
