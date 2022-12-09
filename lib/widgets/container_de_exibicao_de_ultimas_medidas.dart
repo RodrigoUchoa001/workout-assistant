@@ -57,6 +57,7 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
                         offset: const Offset(0, 6),
                       ),
                       conteudo: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Row(
                             children: const [
@@ -67,6 +68,25 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
                               ),
                             ],
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                '50',
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                              Text(
+                                'cm',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                        color: Theme.of(context).disabledColor),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 40),
                         ],
                       ),
                     ),
