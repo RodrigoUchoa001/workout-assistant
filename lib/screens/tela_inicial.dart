@@ -8,6 +8,7 @@ class TelaInicial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // TODO: REMOVER O CENTER
       body: Center(
         child: Column(
           children: [
@@ -42,6 +43,46 @@ class TelaInicial extends StatelessWidget {
                       .bodyMedium!
                       .copyWith(fontWeight: FontWeight.normal, fontSize: 14),
                 ),
+              ),
+            ),
+            //
+            //
+            const SizedBox(height: 24),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Ultima atualização:'),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                ),
+              ],
+            ),
+            //
+            //
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Icon(Icons.history, size: 36),
+                      Expanded(
+                        child: Text(
+                          '5 de dezembro de 2022',
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 20,
+                                  ),
+                        ),
+                      ),
+                      const CircleAvatar(
+                        child: Icon(Icons.edit),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
