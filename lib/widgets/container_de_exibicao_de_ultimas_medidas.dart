@@ -47,7 +47,33 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
                     corDeFundo: const Color(0xFF6FFF86),
                     comprimento: 242,
                     altura: 290,
-                    conteudo: Container(),
+                    conteudo: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const SizedBox(),
+                        RichText(
+                          text: TextSpan(
+                            text: '+5',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                  fontSize: 36,
+                                ),
+                            children: [
+                              TextSpan(
+                                text: 'cm',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                        color: Theme.of(context).disabledColor),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   ContainerDeInfo(
                     corDeFundo: Theme.of(context).primaryColor,
