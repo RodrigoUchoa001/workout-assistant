@@ -8,6 +8,7 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(height: 12),
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
@@ -32,6 +33,7 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
             ],
           ),
         ),
+        const SizedBox(height: 6),
         SizedBox(
           height: 290,
           child: ListView.builder(
