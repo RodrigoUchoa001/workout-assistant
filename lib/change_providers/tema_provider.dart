@@ -17,6 +17,7 @@ class Temas {
     scaffoldBackgroundColor: const Color(0xFFFFFFFF),
     primaryColor: const Color(0xFFFEFFB9),
     focusColor: const Color(0xFF799FFF),
+    disabledColor: const Color(0xFF646464),
     textTheme: const TextTheme(
       titleMedium: TextStyle(
         fontFamily: 'Inter',
@@ -26,6 +27,11 @@ class Temas {
       bodyMedium: TextStyle(
         fontFamily: 'Inter',
         fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
+      bodyLarge: TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 72,
         fontWeight: FontWeight.bold,
       ),
     ),
