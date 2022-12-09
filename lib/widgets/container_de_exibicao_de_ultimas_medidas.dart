@@ -42,13 +42,12 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
                   children: [
                     ContainerDeInfo(
                       corDeFundo: const Color(0xFF6FFF86),
-                      conteudo: Container(),
                       comprimento: 242,
                       altura: 290,
+                      conteudo: Container(),
                     ),
                     ContainerDeInfo(
                       corDeFundo: Theme.of(context).primaryColor,
-                      conteudo: Container(),
                       comprimento: 242,
                       altura: 220,
                       configSombra: BoxShadow(
@@ -56,6 +55,19 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
                         spreadRadius: -3,
                         blurRadius: 7,
                         offset: const Offset(0, 6),
+                      ),
+                      conteudo: Column(
+                        children: [
+                          Row(
+                            children: const [
+                              CircleAvatar(),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 4),
+                                child: Text('Braço Esq.'),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ],
