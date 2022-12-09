@@ -16,6 +16,8 @@ class Temas {
     colorScheme: const ColorScheme.light(),
     scaffoldBackgroundColor: const Color(0xFFFFFFFF),
     primaryColor: const Color(0xFFFEFFB9),
+    highlightColor: const Color(0xFF6FFF86),
+    errorColor: const Color(0xFFFF6F6F),
     focusColor: const Color(0xFF799FFF),
     disabledColor: const Color(0xFF646464),
     textTheme: const TextTheme(
