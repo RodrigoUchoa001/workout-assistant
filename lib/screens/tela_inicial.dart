@@ -87,6 +87,32 @@ class TelaInicial extends StatelessWidget {
                       ),
                     ],
                   ),
+                  SizedBox(
+                    height: 290,
+                    child: ListView.builder(
+                      itemCount: 4,
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return Stack(
+                          children: [
+                            ContainerDeInfo(
+                              corDeFundo: const Color(0xFF6FFF86),
+                              conteudo: Container(),
+                              comprimento: 242,
+                              altura: 290,
+                            ),
+                            ContainerDeInfo(
+                              corDeFundo: Theme.of(context).primaryColor,
+                              conteudo: Container(),
+                              comprimento: 242,
+                              altura: 220,
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
