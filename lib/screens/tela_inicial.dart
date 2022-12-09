@@ -19,6 +19,17 @@ class TelaInicial extends StatelessWidget {
               ),
             ),
             ContainerDeInfo(
+              // INICIO DO CONTAINER DE INFO EXIBINDO MSG DE ATUALIZAR DADOS:
+              // corDeFundo: Theme.of(context).focusColor,
+              // conteudo: ConteudoDoContainerDeInfoComIcone(
+              //   icone: Icons.edit,
+              //   titulo: 'Chegou a hora de atualizar os dados!',
+              //   subtitulo: '',
+              //   acao: TextButton(
+              //     onPressed: () {},
+              //     child: const Text('Inserir novos dados'),
+              //   ),
+              // ),
               corDeFundo: Theme.of(context).primaryColor,
               conteudo: ConteudoDoContainerDeInfoComIcone(
                 icone: Icons.notifications_none,
