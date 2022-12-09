@@ -13,13 +13,28 @@ class ContainerDeExibicaoDeMedidaEDiferenca extends StatelessWidget {
       required this.diferencaDeMedida,
       required this.parteDoCorpo});
 
-  String getSinalDeDiferencaDeMedida(double medida) {
-    if (medida > 0) {
+  String getSinalDeDiferencaDeMedida(double diferencaDeMedida) {
+    if (diferencaDeMedida > 0) {
       return '+';
-    } else if (medida < 0) {
+    } else if (diferencaDeMedida < 0) {
       return '-';
     } else {
       return '';
+    }
+  }
+
+  Color getCorDaDiferencaDeMedida(
+      double diferencaDeMedida, BuildContext context) {
+    // TODO: CORRIGIR diferencaDeMedida Q TÁ APARECENDO O VALOR DA MEDIDA
+    debugPrint('$diferencaDeMedida');
+    if (diferencaDeMedida.toInt() == 0) {
+      return Theme.of(context).focusColor;
+    } else if (diferencaDeMedida.toInt() < 0) {
+      return Theme.of(context).errorColor;
+    } else if (diferencaDeMedida.toInt() > 0) {
+      return Theme.of(context).highlightColor;
+    } else {
+      return Colors.grey;
     }
   }
 
@@ -28,7 +43,7 @@ class ContainerDeExibicaoDeMedidaEDiferenca extends StatelessWidget {
     return Stack(
       children: [
         ContainerDeInfo(
-          corDeFundo: const Color(0xFF6FFF86),
+          corDeFundo: getCorDaDiferencaDeMedida(medida, context),
           comprimento: 242,
           altura: 290,
           conteudo: Column(
