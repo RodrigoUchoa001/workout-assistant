@@ -90,7 +90,7 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
                       children: [
                         Row(
                           children: const [
-                            CircleAvatar(),
+                            CircleAvatar(radius: 18),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 4),
                               child: Text('Braço Esq.'),
@@ -120,7 +120,7 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 40),
+                        const SizedBox(height: 36),
                       ],
                     ),
                   ),
