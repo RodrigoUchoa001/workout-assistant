@@ -68,13 +68,18 @@ class TelaInicial extends StatelessWidget {
                     children: [
                       const Icon(Icons.history, size: 36),
                       Expanded(
-                        child: Text(
-                          '5 de dezembro de 2022',
-                          style:
-                              Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 20,
-                                  ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 2),
+                          child: Text(
+                            '5 de dezembro de 2022',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 20,
+                                ),
+                          ),
                         ),
                       ),
                       const CircleAvatar(
