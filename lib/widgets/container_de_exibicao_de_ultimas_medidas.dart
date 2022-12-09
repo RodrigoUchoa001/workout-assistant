@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:measure_tracker/widgets/container_de_info.dart';
+import 'package:measure_tracker/widgets/container_de_exibicao_de_medida_e_diferenca.dart';
 
 class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
   const ContainerDeExibicaoDeUltimasMedidas({super.key});
@@ -41,90 +41,11 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return Stack(
-                children: [
-                  ContainerDeInfo(
-                    corDeFundo: const Color(0xFF6FFF86),
-                    comprimento: 242,
-                    altura: 290,
-                    conteudo: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const SizedBox(),
-                        RichText(
-                          text: TextSpan(
-                            text: '+5',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                  fontSize: 36,
-                                ),
-                            children: [
-                              TextSpan(
-                                text: 'cm',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        color: Theme.of(context).disabledColor),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  ContainerDeInfo(
-                    corDeFundo: Theme.of(context).primaryColor,
-                    comprimento: 242,
-                    altura: 220,
-                    configSombra: BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: -3,
-                      blurRadius: 7,
-                      offset: const Offset(0, 6),
-                    ),
-                    conteudo: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: const [
-                            CircleAvatar(radius: 18),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 4),
-                              child: Text('Braço Esq.'),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            RichText(
-                              text: TextSpan(
-                                text: '50',
-                                style: Theme.of(context).textTheme.bodyLarge,
-                                children: [
-                                  TextSpan(
-                                    text: 'cm',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .copyWith(
-                                            color: Theme.of(context)
-                                                .disabledColor),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 36),
-                      ],
-                    ),
-                  ),
-                ],
+              return const ContainerDeExibicaoDeMedidaEDiferenca(
+                parteDoCorpo: 'Braço Esq.',
+                medida: 50,
+                tipoDeMedida: 'cm',
+                diferencaDeMedida: 5,
               );
             },
           ),
