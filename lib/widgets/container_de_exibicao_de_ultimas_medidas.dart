@@ -6,11 +6,11 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        children: [
-          Row(
+    return Column(
+      children: [
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Icon(Icons.history, size: 36),
@@ -31,77 +31,77 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
-            height: 290,
-            child: ListView.builder(
-              itemCount: 4,
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return Stack(
-                  children: [
-                    ContainerDeInfo(
-                      corDeFundo: const Color(0xFF6FFF86),
-                      comprimento: 242,
-                      altura: 290,
-                      conteudo: Container(),
+        ),
+        SizedBox(
+          height: 290,
+          child: ListView.builder(
+            itemCount: 4,
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return Stack(
+                children: [
+                  ContainerDeInfo(
+                    corDeFundo: const Color(0xFF6FFF86),
+                    comprimento: 242,
+                    altura: 290,
+                    conteudo: Container(),
+                  ),
+                  ContainerDeInfo(
+                    corDeFundo: Theme.of(context).primaryColor,
+                    comprimento: 242,
+                    altura: 220,
+                    configSombra: BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: -3,
+                      blurRadius: 7,
+                      offset: const Offset(0, 6),
                     ),
-                    ContainerDeInfo(
-                      corDeFundo: Theme.of(context).primaryColor,
-                      comprimento: 242,
-                      altura: 220,
-                      configSombra: BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: -3,
-                        blurRadius: 7,
-                        offset: const Offset(0, 6),
-                      ),
-                      conteudo: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: const [
-                              CircleAvatar(),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 4),
-                                child: Text('Braço Esq.'),
+                    conteudo: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: const [
+                            CircleAvatar(),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 4),
+                              child: Text('Braço Esq.'),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            RichText(
+                              text: TextSpan(
+                                text: '50',
+                                style: Theme.of(context).textTheme.bodyLarge,
+                                children: [
+                                  TextSpan(
+                                    text: 'cm',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
+                                            color: Theme.of(context)
+                                                .disabledColor),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              RichText(
-                                text: TextSpan(
-                                  text: '50',
-                                  style: Theme.of(context).textTheme.bodyLarge,
-                                  children: [
-                                    TextSpan(
-                                      text: 'cm',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium!
-                                          .copyWith(
-                                              color: Theme.of(context)
-                                                  .disabledColor),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 40),
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 40),
+                      ],
                     ),
-                  ],
-                );
-              },
-            ),
+                  ),
+                ],
+              );
+            },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
