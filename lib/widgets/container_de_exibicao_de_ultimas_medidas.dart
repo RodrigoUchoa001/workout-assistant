@@ -72,17 +72,22 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text(
-                                '50',
-                                style: Theme.of(context).textTheme.bodyLarge,
-                              ),
-                              Text(
-                                'cm',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        color: Theme.of(context).disabledColor),
+                              RichText(
+                                text: TextSpan(
+                                  text: '50',
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                  children: [
+                                    TextSpan(
+                                      text: 'cm',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(
+                                              color: Theme.of(context)
+                                                  .disabledColor),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
