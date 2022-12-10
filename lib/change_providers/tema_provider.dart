@@ -20,6 +20,10 @@ class Temas {
     errorColor: const Color(0xFFFF6F6F),
     focusColor: const Color(0xFF799FFF),
     disabledColor: const Color(0xFF646464),
+    iconTheme: const IconThemeData(color: Color(0xFF000000)),
+
+    /// COR DOS BOTÕES DE ICONE
+    canvasColor: const Color(0xFFD9D9D9),
     textTheme: const TextTheme(
       titleMedium: TextStyle(
         fontFamily: 'Inter',
