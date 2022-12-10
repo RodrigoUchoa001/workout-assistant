@@ -19,29 +19,31 @@ class TelaDaBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final paginaExibidaProvider = Provider.of<PaginaExibidaProvider>(context);
 
-    return Scaffold(
-      body: telasDoApp.elementAt(paginaExibidaProvider.paginaExibida),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4),
-        child: SalomonBottomBar(
-          currentIndex: paginaExibidaProvider.paginaExibida,
-          onTap: (index) => paginaExibidaProvider.alteraPaginaExibida(index),
-          // TODO: ESCOLHER UMA COR MELHOR PARA OS BOTOES DA NAVBAR
-          selectedItemColor: Theme.of(context).focusColor,
-          items: [
-            SalomonBottomBarItem(
-              icon: const Icon(Icons.home),
-              title: const Text('Início'),
-            ),
-            SalomonBottomBarItem(
-              icon: const Icon(Icons.straighten),
-              title: const Text('Medidas'),
-            ),
-            SalomonBottomBarItem(
-              icon: const Icon(Icons.fitness_center),
-              title: const Text('Treinos'),
-            ),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        body: telasDoApp.elementAt(paginaExibidaProvider.paginaExibida),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          child: SalomonBottomBar(
+            currentIndex: paginaExibidaProvider.paginaExibida,
+            onTap: (index) => paginaExibidaProvider.alteraPaginaExibida(index),
+            // TODO: ESCOLHER UMA COR MELHOR PARA OS BOTOES DA NAVBAR
+            selectedItemColor: Theme.of(context).focusColor,
+            items: [
+              SalomonBottomBarItem(
+                icon: const Icon(Icons.home),
+                title: const Text('Início'),
+              ),
+              SalomonBottomBarItem(
+                icon: const Icon(Icons.straighten),
+                title: const Text('Medidas'),
+              ),
+              SalomonBottomBarItem(
+                icon: const Icon(Icons.fitness_center),
+                title: const Text('Treinos'),
+              ),
+            ],
+          ),
         ),
       ),
     );
