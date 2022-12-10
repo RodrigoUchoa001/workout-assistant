@@ -49,8 +49,7 @@ class ContainerDeExibicaoDeMedidaEDiferenca extends StatelessWidget {
               const SizedBox(),
               RichText(
                 text: TextSpan(
-                  text:
-                      '${getSinalDeDiferencaDeMedida(diferencaDeMedida)}$diferencaDeMedida',
+                  text: '$diferencaDeMedida',
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         fontSize: 36,
                       ),
