@@ -22,6 +22,8 @@ class TelaDaBottomNavBar extends StatelessWidget {
       bottomNavigationBar: SalomonBottomBar(
         currentIndex: paginaExibidaProvider.paginaExibida,
         onTap: (index) => paginaExibidaProvider.alteraPaginaExibida(index),
+        // TODO: ESCOLHER UMA COR MELHOR PARA OS BOTOES DA NAVBAR
+        selectedItemColor: Theme.of(context).focusColor,
         items: [
           SalomonBottomBarItem(
             icon: const Icon(Icons.home),
