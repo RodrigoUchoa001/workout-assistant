@@ -85,7 +85,10 @@ class ContainerDeExibicaoDeMedidaEDiferenca extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const CircleAvatar(radius: 18),
+                  CircleAvatar(
+                    radius: 18,
+                    backgroundColor: Theme.of(context).canvasColor,
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 4),
                     child: Text(parteDoCorpo),
