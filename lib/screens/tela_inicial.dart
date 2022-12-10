@@ -56,6 +56,23 @@ class TelaInicial extends StatelessWidget {
             ),
           ),
           const ContainerDeExibicaoDeUltimasMedidas(),
+          //
+          const SizedBox(height: 24),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              children: const [
+                Text('Treinos de hoje:'),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 32),
+            child: Text(
+              'Em breve!',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ),
         ],
       ),
     );
