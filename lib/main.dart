@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:measure_tracker/change_providers/pagina_exibida_provider.dart';
 import 'package:measure_tracker/change_providers/tema_provider.dart';
-import 'package:measure_tracker/screens/tela_inicial.dart';
+import 'package:measure_tracker/screens/tela_da_bottom_nav_bar.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => TemaProvider()),
+        ChangeNotifierProvider(create: (_) => PaginaExibidaProvider()),
       ],
       builder: (context, child) {
         return MaterialApp(
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
           theme: Temas.temaClaro,
           // darkTheme: Temas.temaEscuro,
           themeMode: Provider.of<TemaProvider>(context).modoDeTemaAtual,
-          home: const TelaInicial(),
+          home: const TelaDaBottomNavBar(),
         );
       },
     );
