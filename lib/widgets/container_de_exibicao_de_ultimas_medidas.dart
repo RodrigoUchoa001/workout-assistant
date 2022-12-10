@@ -27,8 +27,12 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
                   ),
                 ),
               ),
-              const CircleAvatar(
-                child: Icon(Icons.edit),
+              CircleAvatar(
+                backgroundColor: Theme.of(context).canvasColor,
+                child: Icon(
+                  Icons.edit,
+                  color: Theme.of(context).iconTheme.color,
+                ),
               ),
             ],
           ),
