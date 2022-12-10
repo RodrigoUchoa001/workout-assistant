@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:measure_tracker/change_providers/pagina_exibida_provider.dart';
+import 'package:measure_tracker/screens/tela_de_medidas.dart';
 import 'package:measure_tracker/screens/tela_de_treinos.dart';
 import 'package:measure_tracker/screens/tela_inicial.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +11,7 @@ class TelaDaBottomNavBar extends StatelessWidget {
 
   static const List<Widget> telasDoApp = [
     TelaInicial(),
-    Text('Medidas'),
+    TelaDeMedidas(),
     TelaDeTreinos(),
   ];
 
