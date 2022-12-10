@@ -39,32 +39,35 @@ class ContainerDeExibicaoDeMedidaEDiferenca extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        ContainerDeInfo(
-          corDeFundo: getCorDaDiferencaDeMedida(diferencaDeMedida, context),
-          comprimento: 242,
-          altura: 290,
-          conteudo: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const SizedBox(),
-              RichText(
-                text: TextSpan(
-                  text: '$diferencaDeMedida',
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        fontSize: 36,
+        Positioned(
+          top: 2,
+          child: ContainerDeInfo(
+            corDeFundo: getCorDaDiferencaDeMedida(diferencaDeMedida, context),
+            comprimento: 242,
+            altura: 288,
+            conteudo: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const SizedBox(),
+                RichText(
+                  text: TextSpan(
+                    text: '$diferencaDeMedida',
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          fontSize: 36,
+                        ),
+                    children: [
+                      TextSpan(
+                        text: ' $tipoDeMedida',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(color: Theme.of(context).disabledColor),
                       ),
-                  children: [
-                    TextSpan(
-                      text: ' $tipoDeMedida',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(color: Theme.of(context).disabledColor),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         ContainerDeInfo(

@@ -35,7 +35,7 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
         ),
         const SizedBox(height: 6),
         SizedBox(
-          height: 290,
+          height: 300,
           child: ListView.builder(
             itemCount: 4,
             scrollDirection: Axis.horizontal,
