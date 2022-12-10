@@ -28,6 +28,7 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
                 ),
               ),
               CircleAvatar(
+                radius: 24,
                 backgroundColor: Theme.of(context).canvasColor,
                 child: Icon(
                   Icons.edit,
@@ -43,6 +44,7 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
           child: ListView.builder(
             itemCount: 4,
             scrollDirection: Axis.horizontal,
+            physics: const BouncingScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (context, index) {
               return const ContainerDeExibicaoDeMedidaEDiferenca(
