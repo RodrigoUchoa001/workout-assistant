@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:measure_tracker/widgets/container_de_exibicao_de_medida_e_diferenca.dart';
+import 'package:measure_tracker/ui/widgets/container_de_exibicao_de_medida_e_diferenca.dart';
 
 class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
   const ContainerDeExibicaoDeUltimasMedidas({super.key});

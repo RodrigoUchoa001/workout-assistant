@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:measure_tracker/widgets/container_de_info.dart';
+import 'package:measure_tracker/ui/widgets/container_de_info.dart';
 
 class ContainerDeExibicaoDeMedidaEDiferenca extends StatelessWidget {
   final String parteDoCorpo;

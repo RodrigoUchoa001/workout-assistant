@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:measure_tracker/widgets/container_de_exibicao_de_ultimas_medidas.dart';
-import 'package:measure_tracker/widgets/container_de_info.dart';
-import 'package:measure_tracker/widgets/conteudo_do_container_de_info_com_icone.dart';
+import 'package:measure_tracker/ui/widgets/container_de_exibicao_de_ultimas_medidas.dart';
+import 'package:measure_tracker/ui/widgets/container_de_info.dart';
+import 'package:measure_tracker/ui/widgets/conteudo_do_container_de_info_com_icone.dart';
 
 class TelaInicial extends StatelessWidget {
   const TelaInicial({super.key});
