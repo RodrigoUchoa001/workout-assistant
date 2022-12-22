@@ -11,42 +11,45 @@ class TelaDeAddMedida extends StatelessWidget {
     final TextEditingController _valorcontroller = TextEditingController();
 
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            mensagem,
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 100,
-                child: TextFormField(
-                  controller: _valorcontroller,
-                  keyboardType: TextInputType.number,
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              mensagem,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 100,
+                  child: TextFormField(
+                    controller: _valorcontroller,
+                    keyboardType: TextInputType.number,
+                  ),
                 ),
-              ),
-              Text(unidadeDeMedida),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const SizedBox(),
-              CircleAvatar(
-                backgroundColor: Theme.of(context).canvasColor,
-                radius: 24,
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.arrow_forward),
-                  color: Colors.black,
+                Text(unidadeDeMedida),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const SizedBox(),
+                CircleAvatar(
+                  backgroundColor: Theme.of(context).canvasColor,
+                  radius: 24,
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.arrow_forward),
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
