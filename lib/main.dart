@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:measure_tracker/change_providers/pagina_exibida_provider.dart';
-import 'package:measure_tracker/change_providers/tema_provider.dart';
-import 'package:measure_tracker/screens/tela_da_bottom_nav_bar.dart';
+import 'package:measure_tracker/ui/change_providers/pagina_exibida_provider.dart';
+import 'package:measure_tracker/ui/change_providers/tema_provider.dart';
+import 'package:measure_tracker/ui/screens/tela_da_bottom_nav_bar.dart';
 import 'package:provider/provider.dart';
 
 void main() {

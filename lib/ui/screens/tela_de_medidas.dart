@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:measure_tracker/widgets/container_de_exibicao_de_ultimas_medidas.dart';
+import 'package:measure_tracker/ui/widgets/container_de_exibicao_de_ultimas_medidas.dart';
 
 class TelaDeMedidas extends StatelessWidget {
   const TelaDeMedidas({super.key});
