@@ -9,4 +9,5 @@ class Medida {
 
   late double valorDaMedida;
   late String unidadeDaMedida;
+  late DateTime dataDaMedida;
 }
