@@ -5,7 +5,8 @@ import 'package:measure_tracker/collections/medida.dart';
 class MedidasDoMes {
   Id id = Isar.autoIncrement;
 
-  late List<Medida> medidas;
+  // MedidasDoMes agr pode se relacionar com varias Medida
+  final medidas = IsarLinks<Medida>();
 
   @Index()
   late DateTime dataDasMedidas;
