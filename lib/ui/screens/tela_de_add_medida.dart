@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:measure_tracker/models/msg_de_add_medida.dart';
 
 class TelaDeAddMedida extends StatefulWidget {
-  final String mensagem;
-  final String unidadeDeMedida;
-  const TelaDeAddMedida(
-      {super.key, required this.mensagem, required this.unidadeDeMedida});
+  final List<MsgDeAddMedida> msgsDeMedidas;
+  const TelaDeAddMedida({super.key, required this.msgsDeMedidas});
 
   @override
   State<TelaDeAddMedida> createState() => _TelaDeAddMedidaState();
@@ -12,21 +11,6 @@ class TelaDeAddMedida extends StatefulWidget {
 
 class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
   int contadorDeMedida = 0;
-  List<String> msgsDeMedidas = [
-    "Qual a medida do seu braço esquerdo?",
-    "Qual a medida do seu peito?",
-    "Qual a medida das suas costas?",
-    "Qual a medida da sua barriga?",
-    "Qual a medida da sua cintura?",
-    "Qual a medida do seu bumbum?",
-    "Qual a medida da sua coxa esquerda?",
-    "Qual a medida da sua coxa direita?",
-    "Qual a medida da sua panturrilha esquerda?",
-    "Qual a medida da sua panturrilha direita?",
-    "E por último, qual o seu peso?",
-  ];
-
-  // late List<double> valoresAdicionados = [];
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +23,7 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              msgsDeMedidas[contadorDeMedida],
+              widget.msgsDeMedidas[contadorDeMedida].msg,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             Row(
@@ -52,7 +36,7 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
                     keyboardType: TextInputType.number,
                   ),
                 ),
-                Text(widget.unidadeDeMedida),
+                Text(widget.msgsDeMedidas[contadorDeMedida].unidadeDeMedida),
               ],
             ),
             Row(
@@ -68,7 +52,8 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
                     onPressed: () {
                       setState(() {
                         // TODO: comando pra inserir no bd
-                        if (contadorDeMedida >= msgsDeMedidas.length - 1) {
+                        if (contadorDeMedida >=
+                            widget.msgsDeMedidas.length - 1) {
                           Navigator.pop(context);
                         } else {
                           contadorDeMedida++;
