@@ -55,6 +55,11 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
                         if (contadorDeMedida >=
                             widget.msgsDeMedidas.length - 1) {
                           Navigator.pop(context);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Medidas inseridas com sucesso!'),
+                            ),
+                          );
                         } else {
                           contadorDeMedida++;
                         }
