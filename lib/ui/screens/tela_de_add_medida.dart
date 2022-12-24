@@ -67,7 +67,12 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
                     color: Colors.black,
                     onPressed: () {
                       setState(() {
-                        contadorDeMedida++;
+                        // TODO: comando pra inserir no bd
+                        if (contadorDeMedida >= msgsDeMedidas.length - 1) {
+                          Navigator.pop(context);
+                        } else {
+                          contadorDeMedida++;
+                        }
                       });
                     },
                   ),
