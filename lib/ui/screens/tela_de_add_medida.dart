@@ -14,7 +14,7 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _valorcontroller = TextEditingController();
+    final TextEditingController valorcontroller = TextEditingController();
 
     return Scaffold(
       body: Padding(
@@ -32,7 +32,7 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
                 SizedBox(
                   width: 100,
                   child: TextFormField(
-                    controller: _valorcontroller,
+                    controller: valorcontroller,
                     keyboardType: TextInputType.number,
                   ),
                 ),
