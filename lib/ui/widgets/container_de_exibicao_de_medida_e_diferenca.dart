@@ -35,6 +35,13 @@ class ContainerDeExibicaoDeMedidaEDiferenca extends StatelessWidget {
     }
   }
 
+  String retornaMelhorFormaDeExibirNumero(double numero) {
+    if (numero == numero.roundToDouble()) {
+      return numero.ceil().toString();
+    }
+    return numero.toStringAsFixed(1);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -51,7 +58,7 @@ class ContainerDeExibicaoDeMedidaEDiferenca extends StatelessWidget {
                 const SizedBox(),
                 RichText(
                   text: TextSpan(
-                    text: '$diferencaDeMedida',
+                    text: retornaMelhorFormaDeExibirNumero(diferencaDeMedida),
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontSize: 36,
                         ),
@@ -101,8 +108,7 @@ class ContainerDeExibicaoDeMedidaEDiferenca extends StatelessWidget {
                 children: [
                   RichText(
                     text: TextSpan(
-                      // TODO: PROCURAR UMA FORMA MELHOR DE FAZER ISSO
-                      text: medida.toStringAsFixed(1),
+                      text: retornaMelhorFormaDeExibirNumero(medida),
                       style: Theme.of(context).textTheme.bodyLarge,
                       children: [
                         TextSpan(

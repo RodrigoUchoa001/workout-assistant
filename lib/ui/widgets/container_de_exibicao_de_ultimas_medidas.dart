@@ -14,7 +14,7 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Icon(Icons.history, size: 36),
+              const Icon(Icons.date_range, size: 32),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 2),
