@@ -1,10 +1,32 @@
 import 'package:flutter/material.dart';
 
-class TelaDeAddMedida extends StatelessWidget {
+class TelaDeAddMedida extends StatefulWidget {
   final String mensagem;
   final String unidadeDeMedida;
   const TelaDeAddMedida(
       {super.key, required this.mensagem, required this.unidadeDeMedida});
+
+  @override
+  State<TelaDeAddMedida> createState() => _TelaDeAddMedidaState();
+}
+
+class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
+  int contadorDeMedida = 0;
+  List<String> msgsDeMedidas = [
+    "Qual a medida do seu braço esquerdo?",
+    "Qual a medida do seu peito?",
+    "Qual a medida das suas costas?",
+    "Qual a medida da sua barriga?",
+    "Qual a medida da sua cintura?",
+    "Qual a medida do seu bumbum?",
+    "Qual a medida da sua coxa esquerda?",
+    "Qual a medida da sua coxa direita?",
+    "Qual a medida da sua panturrilha esquerda?",
+    "Qual a medida da sua panturrilha direita?",
+    "E por último, qual o seu peso?",
+  ];
+
+  // late List<double> valoresAdicionados = [];
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +39,7 @@ class TelaDeAddMedida extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              mensagem,
+              msgsDeMedidas[contadorDeMedida],
               style: Theme.of(context).textTheme.titleMedium,
             ),
             Row(
@@ -30,7 +52,7 @@ class TelaDeAddMedida extends StatelessWidget {
                     keyboardType: TextInputType.number,
                   ),
                 ),
-                Text(unidadeDeMedida),
+                Text(widget.unidadeDeMedida),
               ],
             ),
             Row(
@@ -41,9 +63,13 @@ class TelaDeAddMedida extends StatelessWidget {
                   backgroundColor: Theme.of(context).canvasColor,
                   radius: 24,
                   child: IconButton(
-                    onPressed: () {},
                     icon: const Icon(Icons.arrow_forward),
                     color: Colors.black,
+                    onPressed: () {
+                      setState(() {
+                        contadorDeMedida++;
+                      });
+                    },
                   ),
                 ),
               ],
