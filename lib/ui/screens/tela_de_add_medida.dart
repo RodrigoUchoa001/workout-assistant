@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:measure_tracker/models/msg_de_add_medida.dart';
 import 'package:measure_tracker/ui/screens/tela_da_bottom_nav_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TelaDeAddMedida extends StatefulWidget {
   final List<MsgDeAddMedida> msgsDeMedidas;
@@ -12,6 +13,11 @@ class TelaDeAddMedida extends StatefulWidget {
 
 class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
   int contadorDeMedida = 0;
+
+  _setPrimeiroCadastroComoConcluido() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('feitoPrimeiroCadastro', true);
+  }
 
   @override
   Widget build(BuildContext context) {
