@@ -52,24 +52,24 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
                       icon: const Icon(Icons.arrow_forward),
                       color: Colors.black,
                       onPressed: () {
-                        setState(() {
-                          // TODO: comando pra inserir no bd
-                          if (contadorDeMedida >=
-                              widget.msgsDeMedidas.length - 1) {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (_) => const TelaDaBottomNavBar(),
-                              ),
-                            );
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Medidas inseridas com sucesso!'),
-                              ),
-                            );
-                          } else {
+                        // TODO: comando pra inserir no bd
+                        if (contadorDeMedida >=
+                            widget.msgsDeMedidas.length - 1) {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (_) => const TelaDaBottomNavBar(),
+                            ),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Medidas inseridas com sucesso!'),
+                            ),
+                          );
+                        } else {
+                          setState(() {
                             contadorDeMedida++;
-                          }
-                        });
+                          });
+                        }
                       },
                     ),
                   ),
