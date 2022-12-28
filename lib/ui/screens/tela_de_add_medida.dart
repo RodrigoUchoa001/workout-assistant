@@ -93,6 +93,7 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
                             contadorDeMedida++;
                           });
                         }
+                        valorcontroller.clear();
                       },
                     ),
                   ),
