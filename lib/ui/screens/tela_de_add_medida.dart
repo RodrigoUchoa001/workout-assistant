@@ -53,7 +53,10 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: 100,
+                    width:
+                        widget.msgsDeMedidas[contadorDeMedida].campoDeTextoLargo
+                            ? MediaQuery.of(context).size.width - 100
+                            : 100,
                     child: TextFormField(
                       controller: valorcontroller,
                       keyboardType: TextInputType.number,
