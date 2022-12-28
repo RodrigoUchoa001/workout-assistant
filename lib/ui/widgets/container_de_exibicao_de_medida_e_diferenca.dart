@@ -35,7 +35,7 @@ class ContainerDeExibicaoDeMedidaEDiferenca extends StatelessWidget {
     }
   }
 
-  String retornaMelhorFormaDeExibirNumero(double numero) {
+  String getMelhorFormaDeExibirNumero(double numero) {
     if (numero == numero.roundToDouble()) {
       return numero.ceil().toString();
     }
@@ -58,7 +58,7 @@ class ContainerDeExibicaoDeMedidaEDiferenca extends StatelessWidget {
                 const SizedBox(),
                 RichText(
                   text: TextSpan(
-                    text: retornaMelhorFormaDeExibirNumero(diferencaDeMedida),
+                    text: getMelhorFormaDeExibirNumero(diferencaDeMedida),
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontSize: 36,
                         ),
@@ -108,7 +108,7 @@ class ContainerDeExibicaoDeMedidaEDiferenca extends StatelessWidget {
                 children: [
                   RichText(
                     text: TextSpan(
-                      text: retornaMelhorFormaDeExibirNumero(medida),
+                      text: getMelhorFormaDeExibirNumero(medida),
                       style: Theme.of(context).textTheme.bodyLarge,
                       children: [
                         TextSpan(
