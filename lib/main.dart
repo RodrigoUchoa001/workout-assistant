@@ -50,6 +50,7 @@ class MyApp extends StatelessWidget {
           theme: Temas.temaClaro,
           // darkTheme: Temas.temaEscuro,
           themeMode: Provider.of<TemaProvider>(context).modoDeTemaAtual,
+          // home: TelaDeAddMedida(msgsDeMedidas: msgDeMedidasInicial),
           home: feitoPrimeiroCadastro == true
               ? const TelaDaBottomNavBar()
               : TelaDeAddMedida(msgsDeMedidas: msgDeMedidasInicial),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:measure_tracker/models/msg_de_add_medida.dart';
 import 'package:measure_tracker/ui/screens/tela_da_bottom_nav_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,6 +13,8 @@ class TelaDeAddMedida extends StatefulWidget {
 }
 
 class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
+  final TextEditingController valorcontroller = TextEditingController();
+
   int contadorDeMedida = 0;
 
   _finalizarCadastroNoBD() {
@@ -36,7 +39,7 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController valorcontroller = TextEditingController();
+    // final TextEditingController valorcontroller = TextEditingController();
 
     return SafeArea(
       child: Scaffold(
@@ -53,10 +56,19 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: 100,
+                    width:
+                        widget.msgsDeMedidas[contadorDeMedida].campoDeTextoLargo
+                            ? MediaQuery.of(context).size.width - 100
+                            : 100,
                     child: TextFormField(
                       controller: valorcontroller,
                       keyboardType: TextInputType.number,
+                      onTap: widget.msgsDeMedidas[contadorDeMedida]
+                              .precisaDoSeletorDeData
+                          ? () {
+                              abrirSeletorDeData(context);
+                            }
+                          : () {},
                     ),
                   ),
                   Text(widget.msgsDeMedidas[contadorDeMedida].unidadeDeMedida),
@@ -81,6 +93,7 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
                             contadorDeMedida++;
                           });
                         }
+                        valorcontroller.clear();
                       },
                     ),
                   ),
@@ -90,6 +103,27 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> abrirSeletorDeData(BuildContext context) async {
+    final dataAtual = DateTime.now();
+    final novaData = await showDatePicker(
+      context: context,
+      initialDate: dataAtual,
+      firstDate: DateTime(dataAtual.year - 100),
+      lastDate: DateTime(dataAtual.year + 100),
+      locale: const Locale('pt', 'BR'),
+    );
+
+    if (novaData == null) {
+      return;
+    }
+    setState(
+      () {
+        String dataFormato = DateFormat('dd/MM/yyyy').format(novaData);
+        valorcontroller.text = dataFormato;
+      },
     );
   }
 }

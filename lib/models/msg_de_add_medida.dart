@@ -1,15 +1,23 @@
 class MsgDeAddMedida {
   String msg;
   String unidadeDeMedida;
+  bool campoDeTextoLargo;
+  bool precisaDoSeletorDeData;
 
-  MsgDeAddMedida(this.msg, this.unidadeDeMedida);
+  MsgDeAddMedida(this.msg, this.unidadeDeMedida,
+      {this.campoDeTextoLargo = false, this.precisaDoSeletorDeData = false});
 }
 
 ///  Mensagens que devem aparecer quando o usuário inserir medidas ao entrar no
 /// app pela primeira vez.
 List<MsgDeAddMedida> msgDeMedidasInicial = [
-  MsgDeAddMedida("Qual o seu nome?", ""),
-  MsgDeAddMedida("Em que data começam os registros?", ""),
+  MsgDeAddMedida("Qual o seu nome?", "", campoDeTextoLargo: true),
+  MsgDeAddMedida(
+    "Em que data começam os registros?",
+    "",
+    campoDeTextoLargo: true,
+    precisaDoSeletorDeData: true,
+  ),
   MsgDeAddMedida("Qual a medida do seu braço esquerdo?", "cm"),
   MsgDeAddMedida("Qual a medida do seu peito?", "cm"),
   MsgDeAddMedida("Qual a medida das suas costas?", "cm"),
