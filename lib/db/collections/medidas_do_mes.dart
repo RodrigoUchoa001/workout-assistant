@@ -1,5 +1,5 @@
 import 'package:isar/isar.dart';
-import 'package:measure_tracker/collections/medida.dart';
+import 'package:measure_tracker/db/collections/medida.dart';
 
 part 'medidas_do_mes.g.dart';
 

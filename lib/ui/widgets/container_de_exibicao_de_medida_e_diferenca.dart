@@ -25,7 +25,7 @@ class ContainerDeExibicaoDeMedidaEDiferenca extends StatelessWidget {
 
   Color getCorDaDiferencaDeMedida(
       double diferencaDeMedida, BuildContext context) {
-    debugPrint('$diferencaDeMedida');
+    // debugPrint('$diferencaDeMedida');
     if (diferencaDeMedida > 0) {
       return Theme.of(context).highlightColor;
     } else if (diferencaDeMedida.toInt() < 0) {
