@@ -113,7 +113,7 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
       initialDate: dataAtual,
       firstDate: DateTime(dataAtual.year - 100),
       lastDate: DateTime(dataAtual.year + 100),
-      // locale: const Locale('pt', 'BR'),
+      locale: const Locale('pt', 'BR'),
     );
 
     if (novaData == null) {
