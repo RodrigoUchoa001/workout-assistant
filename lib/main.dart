@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:isar/isar.dart';
 import 'package:measure_tracker/db/banco_de_dados.dart';
 import 'package:measure_tracker/db/collections/medida.dart';
@@ -50,6 +51,8 @@ class MyApp extends StatelessWidget {
           theme: Temas.temaClaro,
           // darkTheme: Temas.temaEscuro,
           themeMode: Provider.of<TemaProvider>(context).modoDeTemaAtual,
+          localizationsDelegates: GlobalMaterialLocalizations.delegates,
+          supportedLocales: const [Locale('pt', 'BR')],
           // home: TelaDeAddMedida(msgsDeMedidas: msgDeMedidasInicial),
           home: feitoPrimeiroCadastro == true
               ? const TelaDaBottomNavBar()
