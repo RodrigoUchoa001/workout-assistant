@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:measure_tracker/models/msg_de_add_medida.dart';
+import 'package:measure_tracker/ui/screens/tela_da_bottom_nav_bar.dart';
 
 class TelaDeAddMedida extends StatefulWidget {
   final List<MsgDeAddMedida> msgsDeMedidas;
@@ -55,7 +56,11 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
                           // TODO: comando pra inserir no bd
                           if (contadorDeMedida >=
                               widget.msgsDeMedidas.length - 1) {
-                            Navigator.pop(context);
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (_) => const TelaDaBottomNavBar(),
+                              ),
+                            );
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text('Medidas inseridas com sucesso!'),
