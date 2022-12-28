@@ -14,6 +14,21 @@ class TelaDeAddMedida extends StatefulWidget {
 class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
   int contadorDeMedida = 0;
 
+  _finalizarCadastroNoBD() {
+    // TODO: comando pra inserir no bd
+    _setPrimeiroCadastroComoConcluido();
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (_) => const TelaDaBottomNavBar(),
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Medidas inseridas com sucesso!'),
+      ),
+    );
+  }
+
   _setPrimeiroCadastroComoConcluido() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('feitoPrimeiroCadastro', true);
@@ -58,19 +73,9 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
                       icon: const Icon(Icons.arrow_forward),
                       color: Colors.black,
                       onPressed: () {
-                        // TODO: comando pra inserir no bd
                         if (contadorDeMedida >=
                             widget.msgsDeMedidas.length - 1) {
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (_) => const TelaDaBottomNavBar(),
-                            ),
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Medidas inseridas com sucesso!'),
-                            ),
-                          );
+                          _finalizarCadastroNoBD();
                         } else {
                           setState(() {
                             contadorDeMedida++;
