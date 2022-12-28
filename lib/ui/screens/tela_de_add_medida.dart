@@ -39,8 +39,6 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
 
   @override
   Widget build(BuildContext context) {
-    // final TextEditingController valorcontroller = TextEditingController();
-
     return SafeArea(
       child: Scaffold(
         body: Padding(
