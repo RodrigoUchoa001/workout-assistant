@@ -16,60 +16,62 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
   Widget build(BuildContext context) {
     final TextEditingController valorcontroller = TextEditingController();
 
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              widget.msgsDeMedidas[contadorDeMedida].msg,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 100,
-                  child: TextFormField(
-                    controller: valorcontroller,
-                    keyboardType: TextInputType.number,
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                widget.msgsDeMedidas[contadorDeMedida].msg,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 100,
+                    child: TextFormField(
+                      controller: valorcontroller,
+                      keyboardType: TextInputType.number,
+                    ),
                   ),
-                ),
-                Text(widget.msgsDeMedidas[contadorDeMedida].unidadeDeMedida),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const SizedBox(),
-                CircleAvatar(
-                  backgroundColor: Theme.of(context).canvasColor,
-                  radius: 24,
-                  child: IconButton(
-                    icon: const Icon(Icons.arrow_forward),
-                    color: Colors.black,
-                    onPressed: () {
-                      setState(() {
-                        // TODO: comando pra inserir no bd
-                        if (contadorDeMedida >=
-                            widget.msgsDeMedidas.length - 1) {
-                          Navigator.pop(context);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Medidas inseridas com sucesso!'),
-                            ),
-                          );
-                        } else {
-                          contadorDeMedida++;
-                        }
-                      });
-                    },
+                  Text(widget.msgsDeMedidas[contadorDeMedida].unidadeDeMedida),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const SizedBox(),
+                  CircleAvatar(
+                    backgroundColor: Theme.of(context).canvasColor,
+                    radius: 24,
+                    child: IconButton(
+                      icon: const Icon(Icons.arrow_forward),
+                      color: Colors.black,
+                      onPressed: () {
+                        setState(() {
+                          // TODO: comando pra inserir no bd
+                          if (contadorDeMedida >=
+                              widget.msgsDeMedidas.length - 1) {
+                            Navigator.pop(context);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Medidas inseridas com sucesso!'),
+                              ),
+                            );
+                          } else {
+                            contadorDeMedida++;
+                          }
+                        });
+                      },
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
