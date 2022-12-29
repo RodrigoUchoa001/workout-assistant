@@ -5,7 +5,8 @@ import 'package:measure_tracker/ui/screens/tela_da_bottom_nav_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TelaDeAddMedidasNew extends StatefulWidget {
-  const TelaDeAddMedidasNew({super.key});
+  final DateTime dataPadrao;
+  const TelaDeAddMedidasNew({super.key, required this.dataPadrao});
 
   @override
   State<TelaDeAddMedidasNew> createState() => _TelaDeAddMedidasNewState();
@@ -18,6 +19,7 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
   @override
   void initState() {
     controllers = getControllers();
+    controllers[0].text = getDataFormatada(widget.dataPadrao);
     super.initState();
   }
 
@@ -31,7 +33,7 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 6),
               child: Text(
-                'Adicionando medidas de 12 de janeiro',
+                'Adicionando medidas de ${getDataFormatada(widget.dataPadrao)}',
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
@@ -102,6 +104,10 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
                         ? abrirSeletorDeData(context, i)
                         : null;
                   },
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(fontSize: 24),
                 ),
               ),
               Text(msgDeMedidasDeCadaMes[i].unidadeDeMedida),
@@ -138,10 +144,14 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
     }
     setState(
       () {
-        String dataFormato = DateFormat('dd/MM/yyyy').format(novaData);
-        controllers[posicao].text = dataFormato;
+        // String dataFormato = DateFormat('dd/MM/yyyy').format(novaData);
+        controllers[posicao].text = getDataFormatada(novaData);
       },
     );
+  }
+
+  String getDataFormatada(DateTime data) {
+    return DateFormat('dd/MM/yyyy').format(data);
   }
 
   void salvarDadosNoBD() {
