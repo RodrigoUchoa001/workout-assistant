@@ -91,14 +91,21 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
           isActive: stepAtual >= i,
           title: Text(msgDeMedidasDeCadaMes[i].msg,
               style: Theme.of(context).textTheme.titleSmall),
-          content: TextFormField(
-            controller: controllers[i],
-            keyboardType: TextInputType.number,
-            onTap: () {
-              msgDeMedidasDeCadaMes[i].precisaDoSeletorDeData
-                  ? abrirSeletorDeData(context, i)
-                  : null;
-            },
+          content: Row(
+            children: [
+              Expanded(
+                child: TextFormField(
+                  controller: controllers[i],
+                  keyboardType: TextInputType.number,
+                  onTap: () {
+                    msgDeMedidasDeCadaMes[i].precisaDoSeletorDeData
+                        ? abrirSeletorDeData(context, i)
+                        : null;
+                  },
+                ),
+              ),
+              Text(msgDeMedidasDeCadaMes[i].unidadeDeMedida),
+            ],
           ),
         ),
       );
