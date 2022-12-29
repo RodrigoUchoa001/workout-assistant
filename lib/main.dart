@@ -54,10 +54,10 @@ class MyApp extends StatelessWidget {
           themeMode: Provider.of<TemaProvider>(context).modoDeTemaAtual,
           localizationsDelegates: GlobalMaterialLocalizations.delegates,
           supportedLocales: const [Locale('pt', 'BR')],
-          home: const TelaDeAddMedidasNew(ePrimeiroCadastro: true),
+          home: const TelaDeAddMedidasNew(),
           // home: feitoPrimeiroCadastro == true
           //     ? const TelaDaBottomNavBar()
-          //     : TelaDeAddMedidasNew(ePrimeiroCadastro: feitoPrimeiroCadastro!),
+          //     : TelaDeAddMedidasNew(),
         );
       },
     );

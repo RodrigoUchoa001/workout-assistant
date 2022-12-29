@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:measure_tracker/models/msg_de_add_medida.dart';
 import 'package:measure_tracker/ui/screens/tela_da_bottom_nav_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TelaDeAddMedidasNew extends StatefulWidget {
-  final bool ePrimeiroCadastro;
-  const TelaDeAddMedidasNew({super.key, this.ePrimeiroCadastro = false});
+  const TelaDeAddMedidasNew({super.key});
 
   @override
   State<TelaDeAddMedidasNew> createState() => _TelaDeAddMedidasNewState();
@@ -18,7 +16,7 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
 
   @override
   void initState() {
-    controllers = getControllers(widget.ePrimeiroCadastro);
+    controllers = getControllers();
     super.initState();
   }
 
@@ -71,39 +69,16 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
 
   List<Step> getSteps(BuildContext context) {
     List<Step> steps = [];
-    if (widget.ePrimeiroCadastro) {
-      for (int i = 0; i < msgDeMedidasInicial.length; i++) {
-        steps.add(
-          Step(
-            isActive: stepAtual >= i,
-            title: Text(msgDeMedidasInicial[i].msg,
-                style: Theme.of(context).textTheme.titleSmall),
-            content: TextFormField(
-              controller: controllers[i],
-              keyboardType: msgDeMedidasInicial[i].inputType,
-              onTap: msgDeMedidasInicial[i].precisaDoSeletorDeData
-                  ? () {
-                      abrirSeletorDeData(context, i);
-                    }
-                  : () {},
-            ),
-          ),
-        );
-      }
-    }
 
-    /// com esse antigoStepsLength é possivel usar o isActive nos steps criados
-    /// no segundo for abaixo.
-    int antigoStepsLength = steps.length;
     for (int i = 0; i < msgDeMedidasDeCadaMes.length; i++) {
       steps.add(
         Step(
-          isActive: stepAtual >= antigoStepsLength + i,
+          isActive: stepAtual >= i,
           title: Text(msgDeMedidasDeCadaMes[i].msg,
               style: Theme.of(context).textTheme.titleSmall),
           content: TextFormField(
-            controller: controllers[antigoStepsLength + i],
-            keyboardType: msgDeMedidasDeCadaMes[i].inputType,
+            controller: controllers[i],
+            keyboardType: TextInputType.number,
           ),
         ),
       );
@@ -111,42 +86,14 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
     return steps;
   }
 
-  List<TextEditingController> getControllers(bool ePrimeiroCadastro) {
+  List<TextEditingController> getControllers() {
     List<TextEditingController> controllers = [];
-    if (ePrimeiroCadastro) {
-      for (int i = 0; i < msgDeMedidasInicial.length; i++) {
-        controllers.add(
-          TextEditingController(),
-        );
-      }
-    }
     for (int i = 0; i < msgDeMedidasDeCadaMes.length; i++) {
       controllers.add(
         TextEditingController(),
       );
     }
     return controllers;
-  }
-
-  Future<void> abrirSeletorDeData(BuildContext context, int posicao) async {
-    final dataAtual = DateTime.now();
-    final novaData = await showDatePicker(
-      context: context,
-      initialDate: dataAtual,
-      firstDate: DateTime(dataAtual.year - 100),
-      lastDate: DateTime(dataAtual.year + 100),
-      locale: const Locale('pt', 'BR'),
-    );
-
-    if (novaData == null) {
-      return;
-    }
-    setState(
-      () {
-        String dataFormato = DateFormat('dd/MM/yyyy').format(novaData);
-        controllers[posicao].text = dataFormato;
-      },
-    );
   }
 
   void salvarDadosNoBD() {
