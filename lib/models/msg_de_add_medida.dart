@@ -1,17 +1,23 @@
+import 'package:flutter/material.dart';
+
 class MsgDeAddMedida {
   String msg;
   String unidadeDeMedida;
   bool campoDeTextoLargo;
   bool precisaDoSeletorDeData;
+  TextInputType inputType;
 
   MsgDeAddMedida(this.msg, this.unidadeDeMedida,
-      {this.campoDeTextoLargo = false, this.precisaDoSeletorDeData = false});
+      {this.campoDeTextoLargo = false,
+      this.precisaDoSeletorDeData = false,
+      this.inputType = TextInputType.number});
 }
 
 ///  Mensagens que devem aparecer quando o usuário inserir medidas ao entrar no
 /// app pela primeira vez.
 List<MsgDeAddMedida> msgDeMedidasInicial = [
-  MsgDeAddMedida("Qual o seu nome?", "", campoDeTextoLargo: true),
+  MsgDeAddMedida("Qual o seu nome?", "",
+      campoDeTextoLargo: true, inputType: TextInputType.name),
   MsgDeAddMedida(
     "Em que data começam os registros?",
     "",
