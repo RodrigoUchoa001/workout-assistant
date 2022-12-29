@@ -9,6 +9,7 @@ import 'package:measure_tracker/ui/change_providers/pagina_exibida_provider.dart
 import 'package:measure_tracker/ui/change_providers/tema_provider.dart';
 import 'package:measure_tracker/ui/screens/tela_da_bottom_nav_bar.dart';
 import 'package:measure_tracker/ui/screens/tela_de_add_medida.dart';
+import 'package:measure_tracker/ui/screens/tela_de_add_medidas_new.dart';
 import 'package:provider/provider.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -53,10 +54,10 @@ class MyApp extends StatelessWidget {
           themeMode: Provider.of<TemaProvider>(context).modoDeTemaAtual,
           localizationsDelegates: GlobalMaterialLocalizations.delegates,
           supportedLocales: const [Locale('pt', 'BR')],
-          // home: TelaDeAddMedida(msgsDeMedidas: msgDeMedidasInicial),
-          home: feitoPrimeiroCadastro == true
-              ? const TelaDaBottomNavBar()
-              : TelaDeAddMedida(msgsDeMedidas: msgDeMedidasInicial),
+          home: const TelaDeAddMedidasNew(ePrimeiroCadastro: true),
+          // home: feitoPrimeiroCadastro == true
+          //     ? const TelaDaBottomNavBar()
+          //     : TelaDeAddMedidasNew(ePrimeiroCadastro: feitoPrimeiroCadastro!),
         );
       },
     );

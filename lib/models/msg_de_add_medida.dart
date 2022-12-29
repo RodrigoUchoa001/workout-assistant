@@ -24,17 +24,6 @@ List<MsgDeAddMedida> msgDeMedidasInicial = [
     campoDeTextoLargo: true,
     precisaDoSeletorDeData: true,
   ),
-  MsgDeAddMedida("Qual a medida do seu braço esquerdo?", "cm"),
-  MsgDeAddMedida("Qual a medida do seu peito?", "cm"),
-  MsgDeAddMedida("Qual a medida das suas costas?", "cm"),
-  MsgDeAddMedida("Qual a medida da sua barriga?", "cm"),
-  MsgDeAddMedida("Qual a medida da sua cintura?", "cm"),
-  MsgDeAddMedida("Qual a medida do seu bumbum?", "cm"),
-  MsgDeAddMedida("Qual a medida da sua coxa esquerda?", "cm"),
-  MsgDeAddMedida("Qual a medida da sua coxa direita?", "cm"),
-  MsgDeAddMedida("Qual a medida da sua panturrilha esquerda?", "cm"),
-  MsgDeAddMedida("Qual a medida da sua panturrilha direita?", "cm"),
-  MsgDeAddMedida("E por último, qual o seu peso?", "kg"),
 ];
 
 /// Mensagens que devem aparecer quando o usuário inserir medidas em um momento
