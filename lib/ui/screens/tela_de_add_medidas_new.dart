@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:measure_tracker/models/msg_de_add_medida.dart';
 import 'package:measure_tracker/ui/screens/tela_da_bottom_nav_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TelaDeAddMedidasNew extends StatefulWidget {
-  const TelaDeAddMedidasNew({super.key});
+  final DateTime dataPadrao;
+  const TelaDeAddMedidasNew({super.key, required this.dataPadrao});
 
   @override
   State<TelaDeAddMedidasNew> createState() => _TelaDeAddMedidasNewState();
@@ -17,65 +19,55 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
   @override
   void initState() {
     controllers = getControllers();
+    controllers[0].text = getDataFormatada(widget.dataPadrao);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 6),
-              child: Text(
-                'Adicionando medidas de 12 de janeiro',
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-            ),
-            Stepper(
-              steps: getSteps(context),
-              currentStep: stepAtual,
-              onStepTapped: (step) => setState(() => stepAtual = step),
-              onStepContinue: () {
-                final ultimoStep = stepAtual == getSteps(context).length - 1;
+    return SafeArea(
+      child: Scaffold(
+        body: Stepper(
+          physics: const BouncingScrollPhysics(),
+          steps: getSteps(context),
+          currentStep: stepAtual,
+          onStepTapped: (step) => setState(() => stepAtual = step),
+          onStepContinue: () {
+            final ultimoStep = stepAtual == getSteps(context).length - 1;
 
-                if (ultimoStep) {
-                  salvarDadosNoBD();
-                } else {
-                  setState(() => stepAtual++);
-                }
-              },
-              onStepCancel: () {
-                stepAtual == 0 ? null : setState(() => stepAtual--);
-              },
-              controlsBuilder: (context, details) {
-                final ultimoStep = stepAtual == getSteps(context).length - 1;
-                return Container(
-                  margin: const EdgeInsets.only(top: 50),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: details.onStepContinue,
-                          child: Text(ultimoStep ? 'Concluir' : 'Próximo'),
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      if (stepAtual != 0)
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: details.onStepCancel,
-                            child: const Text('Voltar'),
-                          ),
-                        ),
-                    ],
+            if (ultimoStep) {
+              salvarDadosNoBD();
+            } else {
+              setState(() => stepAtual++);
+            }
+          },
+          onStepCancel: () {
+            stepAtual == 0 ? null : setState(() => stepAtual--);
+          },
+          controlsBuilder: (context, details) {
+            final ultimoStep = stepAtual == getSteps(context).length - 1;
+            return Container(
+              margin: const EdgeInsets.only(top: 50),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: details.onStepContinue,
+                      child: Text(ultimoStep ? 'Concluir' : 'Próximo'),
+                    ),
                   ),
-                );
-              },
-            ),
-          ],
+                  const SizedBox(width: 12),
+                  if (stepAtual != 0)
+                    Expanded(
+                      child: OutlinedButton(
+                        onPressed: details.onStepCancel,
+                        child: const Text('Voltar'),
+                      ),
+                    ),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );
@@ -90,9 +82,25 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
           isActive: stepAtual >= i,
           title: Text(msgDeMedidasDeCadaMes[i].msg,
               style: Theme.of(context).textTheme.titleSmall),
-          content: TextFormField(
-            controller: controllers[i],
-            keyboardType: TextInputType.number,
+          content: Row(
+            children: [
+              Expanded(
+                child: TextFormField(
+                  controller: controllers[i],
+                  keyboardType: TextInputType.number,
+                  onTap: () {
+                    msgDeMedidasDeCadaMes[i].precisaDoSeletorDeData
+                        ? abrirSeletorDeData(context, i)
+                        : null;
+                  },
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(fontSize: 24),
+                ),
+              ),
+              Text(msgDeMedidasDeCadaMes[i].unidadeDeMedida),
+            ],
           ),
         ),
       );
@@ -108,6 +116,31 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
       );
     }
     return controllers;
+  }
+
+  Future<void> abrirSeletorDeData(BuildContext context, int posicao) async {
+    final dataAtual = DateTime.now();
+    final novaData = await showDatePicker(
+      context: context,
+      initialDate: dataAtual,
+      firstDate: DateTime(dataAtual.year - 100),
+      lastDate: DateTime(dataAtual.year + 100),
+      locale: const Locale('pt', 'BR'),
+    );
+
+    if (novaData == null) {
+      return;
+    }
+    setState(
+      () {
+        // String dataFormato = DateFormat('dd/MM/yyyy').format(novaData);
+        controllers[posicao].text = getDataFormatada(novaData);
+      },
+    );
+  }
+
+  String getDataFormatada(DateTime data) {
+    return DateFormat('dd/MM/yyyy').format(data);
   }
 
   void salvarDadosNoBD() {

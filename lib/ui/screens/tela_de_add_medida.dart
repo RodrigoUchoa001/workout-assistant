@@ -4,6 +4,8 @@ import 'package:measure_tracker/models/msg_de_add_medida.dart';
 import 'package:measure_tracker/ui/screens/tela_da_bottom_nav_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// TODO: Remover esse arquivo depois
+@Deprecated('Use [TelaDeAddMedidasNew]')
 class TelaDeAddMedida extends StatefulWidget {
   final List<MsgDeAddMedida> msgsDeMedidas;
   const TelaDeAddMedida({super.key, required this.msgsDeMedidas});
@@ -54,10 +56,10 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width:
-                        widget.msgsDeMedidas[contadorDeMedida].campoDeTextoLargo
-                            ? MediaQuery.of(context).size.width - 100
-                            : 100,
+                    // width:
+                    //     widget.msgsDeMedidas[contadorDeMedida].campoDeTextoLargo
+                    //         ? MediaQuery.of(context).size.width - 100
+                    //         : 100,
                     child: TextFormField(
                       controller: valorcontroller,
                       keyboardType:

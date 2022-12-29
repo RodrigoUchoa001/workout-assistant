@@ -3,25 +3,21 @@ import 'package:flutter/material.dart';
 class MsgDeAddMedida {
   String msg;
   String unidadeDeMedida;
-  bool campoDeTextoLargo;
   bool precisaDoSeletorDeData;
   TextInputType inputType;
 
   MsgDeAddMedida(this.msg, this.unidadeDeMedida,
-      {this.campoDeTextoLargo = false,
-      this.precisaDoSeletorDeData = false,
+      {this.precisaDoSeletorDeData = false,
       this.inputType = TextInputType.number});
 }
 
 ///  Mensagens que devem aparecer quando o usuário inserir medidas ao entrar no
 /// app pela primeira vez.
 List<MsgDeAddMedida> msgDeMedidasInicial = [
-  MsgDeAddMedida("Qual o seu nome?", "",
-      campoDeTextoLargo: true, inputType: TextInputType.name),
+  MsgDeAddMedida("Qual o seu nome?", "", inputType: TextInputType.name),
   MsgDeAddMedida(
     "Em que data começam os registros?",
     "",
-    campoDeTextoLargo: true,
     precisaDoSeletorDeData: true,
   ),
 ];
@@ -29,6 +25,11 @@ List<MsgDeAddMedida> msgDeMedidasInicial = [
 /// Mensagens que devem aparecer quando o usuário inserir medidas em um momento
 /// comum no app. Não na primeira vez q entrar no app.
 List<MsgDeAddMedida> msgDeMedidasDeCadaMes = [
+  MsgDeAddMedida(
+    "Em que data foi feito o registro?",
+    "",
+    precisaDoSeletorDeData: true,
+  ),
   MsgDeAddMedida("Qual a medida do seu braço esquerdo?", "cm"),
   MsgDeAddMedida("Qual a medida do seu peito?", "cm"),
   MsgDeAddMedida("Qual a medida das suas costas?", "cm"),
