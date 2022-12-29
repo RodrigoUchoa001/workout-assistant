@@ -60,7 +60,8 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
                             : 100,
                     child: TextFormField(
                       controller: valorcontroller,
-                      keyboardType: TextInputType.number,
+                      keyboardType:
+                          widget.msgsDeMedidas[contadorDeMedida].inputType,
                       onTap: widget.msgsDeMedidas[contadorDeMedida]
                               .precisaDoSeletorDeData
                           ? () {
