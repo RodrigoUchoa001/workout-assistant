@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:measure_tracker/models/msg_de_add_medida.dart';
 import 'package:measure_tracker/ui/screens/tela_da_bottom_nav_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -65,7 +66,7 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
                       const SizedBox(width: 12),
                       if (stepAtual != 0)
                         Expanded(
-                          child: ElevatedButton(
+                          child: OutlinedButton(
                             onPressed: details.onStepCancel,
                             child: const Text('Voltar'),
                           ),
@@ -93,6 +94,11 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
           content: TextFormField(
             controller: controllers[i],
             keyboardType: TextInputType.number,
+            onTap: () {
+              msgDeMedidasDeCadaMes[i].precisaDoSeletorDeData
+                  ? abrirSeletorDeData(context, i)
+                  : null;
+            },
           ),
         ),
       );
@@ -108,6 +114,27 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
       );
     }
     return controllers;
+  }
+
+  Future<void> abrirSeletorDeData(BuildContext context, int posicao) async {
+    final dataAtual = DateTime.now();
+    final novaData = await showDatePicker(
+      context: context,
+      initialDate: dataAtual,
+      firstDate: DateTime(dataAtual.year - 100),
+      lastDate: DateTime(dataAtual.year + 100),
+      locale: const Locale('pt', 'BR'),
+    );
+
+    if (novaData == null) {
+      return;
+    }
+    setState(
+      () {
+        String dataFormato = DateFormat('dd/MM/yyyy').format(novaData);
+        controllers[posicao].text = dataFormato;
+      },
+    );
   }
 
   void salvarDadosNoBD() {
