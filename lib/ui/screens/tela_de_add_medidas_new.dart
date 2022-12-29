@@ -23,46 +23,60 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stepper(
-        steps: getSteps(context),
-        currentStep: stepAtual,
-        onStepTapped: (step) => setState(() => stepAtual = step),
-        onStepContinue: () {
-          final ultimoStep = stepAtual == getSteps(context).length - 1;
-
-          if (ultimoStep) {
-            salvarDadosNoBD();
-          } else {
-            setState(() => stepAtual++);
-          }
-        },
-        onStepCancel: () {
-          stepAtual == 0 ? null : setState(() => stepAtual--);
-        },
-        controlsBuilder: (context, details) {
-          final ultimoStep = stepAtual == getSteps(context).length - 1;
-          return Container(
-            margin: const EdgeInsets.only(top: 50),
-            child: Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: details.onStepContinue,
-                    child: Text(ultimoStep ? 'Concluir' : 'Próximo'),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                if (stepAtual != 0)
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: details.onStepCancel,
-                      child: const Text('Voltar'),
-                    ),
-                  ),
-              ],
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 6),
+              child: Text(
+                'Adicionando medidas de 12 de janeiro',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
             ),
-          );
-        },
+            Stepper(
+              steps: getSteps(context),
+              currentStep: stepAtual,
+              onStepTapped: (step) => setState(() => stepAtual = step),
+              onStepContinue: () {
+                final ultimoStep = stepAtual == getSteps(context).length - 1;
+
+                if (ultimoStep) {
+                  salvarDadosNoBD();
+                } else {
+                  setState(() => stepAtual++);
+                }
+              },
+              onStepCancel: () {
+                stepAtual == 0 ? null : setState(() => stepAtual--);
+              },
+              controlsBuilder: (context, details) {
+                final ultimoStep = stepAtual == getSteps(context).length - 1;
+                return Container(
+                  margin: const EdgeInsets.only(top: 50),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: details.onStepContinue,
+                          child: Text(ultimoStep ? 'Concluir' : 'Próximo'),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      if (stepAtual != 0)
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: details.onStepCancel,
+                            child: const Text('Voltar'),
+                          ),
+                        ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
