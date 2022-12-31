@@ -31,6 +31,7 @@ List<MsgDeAddMedida> msgDeMedidasDeCadaMes = [
     precisaDoSeletorDeData: true,
   ),
   MsgDeAddMedida("Qual a medida do seu braço esquerdo?", "cm"),
+  MsgDeAddMedida("Qual a medida do seu braço direito?", "cm"),
   MsgDeAddMedida("Qual a medida do seu peito?", "cm"),
   MsgDeAddMedida("Qual a medida das suas costas?", "cm"),
   MsgDeAddMedida("Qual a medida da sua barriga?", "cm"),
