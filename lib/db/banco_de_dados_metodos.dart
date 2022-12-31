@@ -11,16 +11,6 @@ class BancoDeDadosMetodos {
   Isar isar;
   BancoDeDadosMetodos(this.isar);
 
-  // Future<Isar> getInstanciaDoBd() async {
-  //   final dir = await getApplicationSupportDirectory();
-  //   final isar = await Isar.open(
-  //     [MedidaSchema, MedidasDoMesSchema],
-  //     directory: dir.path,
-  //   );
-  //   BancoDeDadosMetodos(isar);
-  //   return isar;
-  // }
-
   /// a lista que vem no parametro virá na seguinte ordem:
   /// [data, braço esq, braço dir, peito, costas, barriga, cintura, bumbum,
   /// coxa esq, coxa dir, panturrilha esq, panturrilha dir, peso]
@@ -52,7 +42,6 @@ class BancoDeDadosMetodos {
           ..mesDaMedida.value = medidasDoMesDaVez,
       );
     }
-    debugPrint('deu certo add no bd');
   }
 
   late MedidasDoMes medidasDoMesDaVez;
@@ -72,5 +61,18 @@ class BancoDeDadosMetodos {
         await isar.medidas.put(medida);
       },
     );
+  }
+
+  getMedidasDoMes() async {
+    final getMedidasDoMes = await isar.medidasDoMes.where().findAll();
+    return getMedidasDoMes;
+  }
+
+  getMedidas(MedidasDoMes medidasDoMes) async {
+    final getMedidas = await isar.medidas
+        .filter()
+        .dataDaMedidaEqualTo(medidasDoMes.dataDasMedidas)
+        .findAll();
+    return getMedidas;
   }
 }
