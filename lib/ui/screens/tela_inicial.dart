@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:measure_tracker/models/msg_de_add_medida.dart';
-import 'package:measure_tracker/ui/screens/tela_de_add_medida.dart';
 import 'package:measure_tracker/ui/screens/tela_de_add_medidas_new.dart';
 import 'package:measure_tracker/ui/widgets/container_de_exibicao_de_ultimas_medidas.dart';
 import 'package:measure_tracker/ui/widgets/container_de_info.dart';
