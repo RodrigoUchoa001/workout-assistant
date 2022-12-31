@@ -36,7 +36,7 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
             final ultimoStep = stepAtual == getSteps(context).length - 1;
 
             if (ultimoStep) {
-              salvarDadosNoBD();
+              concluirCadastro();
             } else {
               setState(() => stepAtual++);
             }
@@ -143,7 +143,7 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
     return DateFormat('dd/MM/yyyy').format(data);
   }
 
-  void salvarDadosNoBD() {
+  void concluirCadastro() {
     // TODO: comando pra inserir no bd
     _setPrimeiroCadastroComoConcluido();
     Navigator.of(context).pushReplacement(
