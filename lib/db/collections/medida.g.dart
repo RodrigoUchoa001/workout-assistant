@@ -63,7 +63,7 @@ const MedidaSchema = CollectionSchema(
       id: 3802203348938790379,
       name: r'mesDaMedida',
       target: r'MedidasDoMes',
-      single: false,
+      single: true,
     )
   },
   embeddedSchemas: {},
@@ -761,53 +761,9 @@ extension MedidaQueryLinks on QueryBuilder<Medida, Medida, QFilterCondition> {
     });
   }
 
-  QueryBuilder<Medida, Medida, QAfterFilterCondition> mesDaMedidaLengthEqualTo(
-      int length) {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'mesDaMedida', length, true, length, true);
-    });
-  }
-
-  QueryBuilder<Medida, Medida, QAfterFilterCondition> mesDaMedidaIsEmpty() {
+  QueryBuilder<Medida, Medida, QAfterFilterCondition> mesDaMedidaIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'mesDaMedida', 0, true, 0, true);
-    });
-  }
-
-  QueryBuilder<Medida, Medida, QAfterFilterCondition> mesDaMedidaIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'mesDaMedida', 0, false, 999999, true);
-    });
-  }
-
-  QueryBuilder<Medida, Medida, QAfterFilterCondition> mesDaMedidaLengthLessThan(
-    int length, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'mesDaMedida', 0, true, length, include);
-    });
-  }
-
-  QueryBuilder<Medida, Medida, QAfterFilterCondition>
-      mesDaMedidaLengthGreaterThan(
-    int length, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'mesDaMedida', length, include, 999999, true);
-    });
-  }
-
-  QueryBuilder<Medida, Medida, QAfterFilterCondition> mesDaMedidaLengthBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(
-          r'mesDaMedida', lower, includeLower, upper, includeUpper);
     });
   }
 }
