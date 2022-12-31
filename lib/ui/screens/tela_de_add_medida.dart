@@ -20,7 +20,6 @@ class _TelaDeAddMedidaState extends State<TelaDeAddMedida> {
   int contadorDeMedida = 0;
 
   _finalizarCadastroNoBD() {
-    // TODO: comando pra inserir no bd
     _setPrimeiroCadastroComoConcluido();
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(

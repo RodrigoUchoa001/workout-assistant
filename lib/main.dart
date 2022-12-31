@@ -52,10 +52,10 @@ class MyApp extends StatelessWidget {
           themeMode: Provider.of<TemaProvider>(context).modoDeTemaAtual,
           localizationsDelegates: GlobalMaterialLocalizations.delegates,
           supportedLocales: const [Locale('pt', 'BR')],
-          // home: const TelaDeAddMedidasNew(),
+          // home: TelaDeAddMedidasNew(dataPadrao: DateTime.now()),
           home: feitoPrimeiroCadastro == true
               ? const TelaDaBottomNavBar()
-              : const TelaDeAddMedidasNew(),
+              : TelaDeAddMedidasNew(dataPadrao: DateTime.now()),
         );
       },
     );
