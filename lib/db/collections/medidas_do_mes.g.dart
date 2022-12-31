@@ -43,14 +43,7 @@ const MedidasDoMesSchema = CollectionSchema(
       ],
     )
   },
-  links: {
-    r'medidas': LinkSchema(
-      id: -2621654811910363135,
-      name: r'medidas',
-      target: r'Medida',
-      single: false,
-    )
-  },
+  links: {},
   embeddedSchemas: {},
   getId: _medidasDoMesGetId,
   getLinks: _medidasDoMesGetLinks,
@@ -107,13 +100,12 @@ Id _medidasDoMesGetId(MedidasDoMes object) {
 }
 
 List<IsarLinkBase<dynamic>> _medidasDoMesGetLinks(MedidasDoMes object) {
-  return [object.medidas];
+  return [];
 }
 
 void _medidasDoMesAttach(
     IsarCollection<dynamic> col, Id id, MedidasDoMes object) {
   object.id = id;
-  object.medidas.attach(col, col.isar.collection<Medida>(), r'medidas', id);
 }
 
 extension MedidasDoMesQueryWhereSort
@@ -412,68 +404,7 @@ extension MedidasDoMesQueryObject
     on QueryBuilder<MedidasDoMes, MedidasDoMes, QFilterCondition> {}
 
 extension MedidasDoMesQueryLinks
-    on QueryBuilder<MedidasDoMes, MedidasDoMes, QFilterCondition> {
-  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition> medidas(
-      FilterQuery<Medida> q) {
-    return QueryBuilder.apply(this, (query) {
-      return query.link(q, r'medidas');
-    });
-  }
-
-  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
-      medidasLengthEqualTo(int length) {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'medidas', length, true, length, true);
-    });
-  }
-
-  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
-      medidasIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'medidas', 0, true, 0, true);
-    });
-  }
-
-  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
-      medidasIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'medidas', 0, false, 999999, true);
-    });
-  }
-
-  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
-      medidasLengthLessThan(
-    int length, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'medidas', 0, true, length, include);
-    });
-  }
-
-  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
-      medidasLengthGreaterThan(
-    int length, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'medidas', length, include, 999999, true);
-    });
-  }
-
-  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
-      medidasLengthBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(
-          r'medidas', lower, includeLower, upper, includeUpper);
-    });
-  }
-}
+    on QueryBuilder<MedidasDoMes, MedidasDoMes, QFilterCondition> {}
 
 extension MedidasDoMesQuerySortBy
     on QueryBuilder<MedidasDoMes, MedidasDoMes, QSortBy> {

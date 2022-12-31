@@ -1,4 +1,5 @@
 import 'package:isar/isar.dart';
+import 'package:measure_tracker/db/collections/medidas_do_mes.dart';
 
 part 'medida.g.dart';
 
@@ -12,4 +13,6 @@ class Medida {
   late double valorDaMedida;
   late String unidadeDaMedida;
   late DateTime dataDaMedida;
+
+  final mesDaMedida = IsarLinks<MedidasDoMes>();
 }

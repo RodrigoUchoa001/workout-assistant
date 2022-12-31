@@ -58,7 +58,14 @@ const MedidaSchema = CollectionSchema(
       ],
     )
   },
-  links: {},
+  links: {
+    r'mesDaMedida': LinkSchema(
+      id: 3802203348938790379,
+      name: r'mesDaMedida',
+      target: r'MedidasDoMes',
+      single: false,
+    )
+  },
   embeddedSchemas: {},
   getId: _medidaGetId,
   getLinks: _medidaGetLinks,
@@ -129,11 +136,13 @@ Id _medidaGetId(Medida object) {
 }
 
 List<IsarLinkBase<dynamic>> _medidaGetLinks(Medida object) {
-  return [];
+  return [object.mesDaMedida];
 }
 
 void _medidaAttach(IsarCollection<dynamic> col, Id id, Medida object) {
   object.id = id;
+  object.mesDaMedida
+      .attach(col, col.isar.collection<MedidasDoMes>(), r'mesDaMedida', id);
 }
 
 extension MedidaByIndex on IsarCollection<Medida> {
@@ -744,7 +753,64 @@ extension MedidaQueryFilter on QueryBuilder<Medida, Medida, QFilterCondition> {
 
 extension MedidaQueryObject on QueryBuilder<Medida, Medida, QFilterCondition> {}
 
-extension MedidaQueryLinks on QueryBuilder<Medida, Medida, QFilterCondition> {}
+extension MedidaQueryLinks on QueryBuilder<Medida, Medida, QFilterCondition> {
+  QueryBuilder<Medida, Medida, QAfterFilterCondition> mesDaMedida(
+      FilterQuery<MedidasDoMes> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.link(q, r'mesDaMedida');
+    });
+  }
+
+  QueryBuilder<Medida, Medida, QAfterFilterCondition> mesDaMedidaLengthEqualTo(
+      int length) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'mesDaMedida', length, true, length, true);
+    });
+  }
+
+  QueryBuilder<Medida, Medida, QAfterFilterCondition> mesDaMedidaIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'mesDaMedida', 0, true, 0, true);
+    });
+  }
+
+  QueryBuilder<Medida, Medida, QAfterFilterCondition> mesDaMedidaIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'mesDaMedida', 0, false, 999999, true);
+    });
+  }
+
+  QueryBuilder<Medida, Medida, QAfterFilterCondition> mesDaMedidaLengthLessThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'mesDaMedida', 0, true, length, include);
+    });
+  }
+
+  QueryBuilder<Medida, Medida, QAfterFilterCondition>
+      mesDaMedidaLengthGreaterThan(
+    int length, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(r'mesDaMedida', length, include, 999999, true);
+    });
+  }
+
+  QueryBuilder<Medida, Medida, QAfterFilterCondition> mesDaMedidaLengthBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.linkLength(
+          r'mesDaMedida', lower, includeLower, upper, includeUpper);
+    });
+  }
+}
 
 extension MedidaQuerySortBy on QueryBuilder<Medida, Medida, QSortBy> {
   QueryBuilder<Medida, Medida, QAfterSortBy> sortByDataDaMedida() {
