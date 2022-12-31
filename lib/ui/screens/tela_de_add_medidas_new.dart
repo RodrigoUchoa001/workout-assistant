@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:measure_tracker/db/banco_de_dados_metodos.dart';
 import 'package:measure_tracker/models/msg_de_add_medida.dart';
 import 'package:measure_tracker/ui/screens/tela_da_bottom_nav_bar.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TelaDeAddMedidasNew extends StatefulWidget {
@@ -145,6 +147,9 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
 
   void concluirCadastro() {
     // TODO: comando pra inserir no bd
+    Provider.of<BancoDeDadosMetodos>(context, listen: false)
+        .addCadaMedida(controllers);
+
     _setPrimeiroCadastroComoConcluido();
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
