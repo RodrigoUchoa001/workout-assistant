@@ -20,7 +20,7 @@ const MedidasDoMesSchema = CollectionSchema(
     r'dataDasMedidas': PropertySchema(
       id: 0,
       name: r'dataDasMedidas',
-      type: IsarType.dateTime,
+      type: IsarType.string,
     )
   },
   estimateSize: _medidasDoMesEstimateSize,
@@ -37,8 +37,8 @@ const MedidasDoMesSchema = CollectionSchema(
       properties: [
         IndexPropertySchema(
           name: r'dataDasMedidas',
-          type: IndexType.value,
-          caseSensitive: false,
+          type: IndexType.hash,
+          caseSensitive: true,
         )
       ],
     )
@@ -57,6 +57,7 @@ int _medidasDoMesEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
+  bytesCount += 3 + object.dataDasMedidas.length * 3;
   return bytesCount;
 }
 
@@ -66,7 +67,7 @@ void _medidasDoMesSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeDateTime(offsets[0], object.dataDasMedidas);
+  writer.writeString(offsets[0], object.dataDasMedidas);
 }
 
 MedidasDoMes _medidasDoMesDeserialize(
@@ -76,7 +77,7 @@ MedidasDoMes _medidasDoMesDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = MedidasDoMes();
-  object.dataDasMedidas = reader.readDateTime(offsets[0]);
+  object.dataDasMedidas = reader.readString(offsets[0]);
   object.id = id;
   return object;
 }
@@ -89,7 +90,7 @@ P _medidasDoMesDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readDateTime(offset)) as P;
+      return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -113,14 +114,6 @@ extension MedidasDoMesQueryWhereSort
   QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterWhere> anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
-    });
-  }
-
-  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterWhere> anyDataDasMedidas() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addWhereClause(
-        const IndexWhereClause.any(indexName: r'dataDasMedidas'),
-      );
     });
   }
 }
@@ -195,7 +188,7 @@ extension MedidasDoMesQueryWhere
   }
 
   QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterWhereClause>
-      dataDasMedidasEqualTo(DateTime dataDasMedidas) {
+      dataDasMedidasEqualTo(String dataDasMedidas) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IndexWhereClause.equalTo(
         indexName: r'dataDasMedidas',
@@ -205,7 +198,7 @@ extension MedidasDoMesQueryWhere
   }
 
   QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterWhereClause>
-      dataDasMedidasNotEqualTo(DateTime dataDasMedidas) {
+      dataDasMedidasNotEqualTo(String dataDasMedidas) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -238,102 +231,63 @@ extension MedidasDoMesQueryWhere
       }
     });
   }
-
-  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterWhereClause>
-      dataDasMedidasGreaterThan(
-    DateTime dataDasMedidas, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addWhereClause(IndexWhereClause.between(
-        indexName: r'dataDasMedidas',
-        lower: [dataDasMedidas],
-        includeLower: include,
-        upper: [],
-      ));
-    });
-  }
-
-  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterWhereClause>
-      dataDasMedidasLessThan(
-    DateTime dataDasMedidas, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addWhereClause(IndexWhereClause.between(
-        indexName: r'dataDasMedidas',
-        lower: [],
-        upper: [dataDasMedidas],
-        includeUpper: include,
-      ));
-    });
-  }
-
-  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterWhereClause>
-      dataDasMedidasBetween(
-    DateTime lowerDataDasMedidas,
-    DateTime upperDataDasMedidas, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addWhereClause(IndexWhereClause.between(
-        indexName: r'dataDasMedidas',
-        lower: [lowerDataDasMedidas],
-        includeLower: includeLower,
-        upper: [upperDataDasMedidas],
-        includeUpper: includeUpper,
-      ));
-    });
-  }
 }
 
 extension MedidasDoMesQueryFilter
     on QueryBuilder<MedidasDoMes, MedidasDoMes, QFilterCondition> {
   QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
-      dataDasMedidasEqualTo(DateTime value) {
+      dataDasMedidasEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'dataDasMedidas',
         value: value,
+        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
       dataDasMedidasGreaterThan(
-    DateTime value, {
+    String value, {
     bool include = false,
+    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
         property: r'dataDasMedidas',
         value: value,
+        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
       dataDasMedidasLessThan(
-    DateTime value, {
+    String value, {
     bool include = false,
+    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
         property: r'dataDasMedidas',
         value: value,
+        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
       dataDasMedidasBetween(
-    DateTime lower,
-    DateTime upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
+    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
@@ -342,6 +296,77 @@ extension MedidasDoMesQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
+      dataDasMedidasStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'dataDasMedidas',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
+      dataDasMedidasEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'dataDasMedidas',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
+      dataDasMedidasContains(String value, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'dataDasMedidas',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
+      dataDasMedidasMatches(String pattern, {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'dataDasMedidas',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
+      dataDasMedidasIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'dataDasMedidas',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
+      dataDasMedidasIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'dataDasMedidas',
+        value: '',
       ));
     });
   }
@@ -454,10 +479,11 @@ extension MedidasDoMesQuerySortThenBy
 
 extension MedidasDoMesQueryWhereDistinct
     on QueryBuilder<MedidasDoMes, MedidasDoMes, QDistinct> {
-  QueryBuilder<MedidasDoMes, MedidasDoMes, QDistinct>
-      distinctByDataDasMedidas() {
+  QueryBuilder<MedidasDoMes, MedidasDoMes, QDistinct> distinctByDataDasMedidas(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'dataDasMedidas');
+      return query.addDistinctBy(r'dataDasMedidas',
+          caseSensitive: caseSensitive);
     });
   }
 }
@@ -470,7 +496,7 @@ extension MedidasDoMesQueryProperty
     });
   }
 
-  QueryBuilder<MedidasDoMes, DateTime, QQueryOperations>
+  QueryBuilder<MedidasDoMes, String, QQueryOperations>
       dataDasMedidasProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'dataDasMedidas');
