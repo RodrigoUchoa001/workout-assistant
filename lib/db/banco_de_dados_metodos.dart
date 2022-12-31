@@ -3,9 +3,9 @@ import 'package:isar/isar.dart';
 // import 'package:measure_tracker/db/collections/medidas_do_mes.dart';
 // import 'package:path_provider/path_provider.dart';
 
-class BancoDeDados {
+class BancoDeDadosMetodos {
   Isar isar;
-  BancoDeDados(this.isar);
+  BancoDeDadosMetodos(this.isar);
 
   // Future<Isar> getInstanciaDoBd() async {
   //   final dir = await getApplicationSupportDirectory();
@@ -13,7 +13,7 @@ class BancoDeDados {
   //     [MedidaSchema, MedidasDoMesSchema],
   //     directory: dir.path,
   //   );
-  //   BancoDeDados(isar);
+  //   BancoDeDadosMetodos(isar);
   //   return isar;
   // }
 

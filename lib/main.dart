@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:isar/isar.dart';
-import 'package:measure_tracker/db/banco_de_dados.dart';
+import 'package:measure_tracker/db/banco_de_dados_metodos.dart';
 import 'package:measure_tracker/db/collections/medida.dart';
 import 'package:measure_tracker/db/collections/medidas_do_mes.dart';
 import 'package:measure_tracker/ui/change_providers/pagina_exibida_provider.dart';
@@ -16,7 +16,7 @@ bool? feitoPrimeiroCadastro;
 
 void main() async {
   // pegando instância do bd isar, logo a frente é passado pro provider de
-  // BancoDeDados
+  // BancoDeDadosMetodos
   WidgetsFlutterBinding.ensureInitialized();
   final dir = await getApplicationSupportDirectory();
   final isar = await Isar.open(
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<BancoDeDados>(create: (_) => BancoDeDados(isar)),
+        Provider<BancoDeDadosMetodos>(create: (_) => BancoDeDadosMetodos(isar)),
         ChangeNotifierProvider(create: (_) => TemaProvider()),
         ChangeNotifierProvider(create: (_) => PaginaExibidaProvider()),
       ],
