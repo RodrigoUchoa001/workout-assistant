@@ -12,7 +12,7 @@ class Medida {
 
   late double valorDaMedida;
   late String unidadeDaMedida;
-  late DateTime dataDaMedida;
+  late String dataDaMedida;
 
   final mesDaMedida = IsarLink<MedidasDoMes>();
 }

@@ -20,7 +20,7 @@ const MedidaSchema = CollectionSchema(
     r'dataDaMedida': PropertySchema(
       id: 0,
       name: r'dataDaMedida',
-      type: IsarType.dateTime,
+      type: IsarType.string,
     ),
     r'tipoDeMedida': PropertySchema(
       id: 1,
@@ -79,6 +79,7 @@ int _medidaEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
+  bytesCount += 3 + object.dataDaMedida.length * 3;
   bytesCount += 3 + object.tipoDeMedida.length * 3;
   bytesCount += 3 + object.unidadeDaMedida.length * 3;
   return bytesCount;
@@ -90,7 +91,7 @@ void _medidaSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeDateTime(offsets[0], object.dataDaMedida);
+  writer.writeString(offsets[0], object.dataDaMedida);
   writer.writeString(offsets[1], object.tipoDeMedida);
   writer.writeString(offsets[2], object.unidadeDaMedida);
   writer.writeDouble(offsets[3], object.valorDaMedida);
@@ -103,7 +104,7 @@ Medida _medidaDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = Medida();
-  object.dataDaMedida = reader.readDateTime(offsets[0]);
+  object.dataDaMedida = reader.readString(offsets[0]);
   object.id = id;
   object.tipoDeMedida = reader.readString(offsets[1]);
   object.unidadeDaMedida = reader.readString(offsets[2]);
@@ -119,7 +120,7 @@ P _medidaDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readDateTime(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 1:
       return (reader.readString(offset)) as P;
     case 2:
@@ -322,46 +323,54 @@ extension MedidaQueryWhere on QueryBuilder<Medida, Medida, QWhereClause> {
 
 extension MedidaQueryFilter on QueryBuilder<Medida, Medida, QFilterCondition> {
   QueryBuilder<Medida, Medida, QAfterFilterCondition> dataDaMedidaEqualTo(
-      DateTime value) {
+    String value, {
+    bool caseSensitive = true,
+  }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'dataDaMedida',
         value: value,
+        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<Medida, Medida, QAfterFilterCondition> dataDaMedidaGreaterThan(
-    DateTime value, {
+    String value, {
     bool include = false,
+    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
         property: r'dataDaMedida',
         value: value,
+        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<Medida, Medida, QAfterFilterCondition> dataDaMedidaLessThan(
-    DateTime value, {
+    String value, {
     bool include = false,
+    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
         property: r'dataDaMedida',
         value: value,
+        caseSensitive: caseSensitive,
       ));
     });
   }
 
   QueryBuilder<Medida, Medida, QAfterFilterCondition> dataDaMedidaBetween(
-    DateTime lower,
-    DateTime upper, {
+    String lower,
+    String upper, {
     bool includeLower = true,
     bool includeUpper = true,
+    bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
@@ -370,6 +379,75 @@ extension MedidaQueryFilter on QueryBuilder<Medida, Medida, QFilterCondition> {
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Medida, Medida, QAfterFilterCondition> dataDaMedidaStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'dataDaMedida',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Medida, Medida, QAfterFilterCondition> dataDaMedidaEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'dataDaMedida',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Medida, Medida, QAfterFilterCondition> dataDaMedidaContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'dataDaMedida',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Medida, Medida, QAfterFilterCondition> dataDaMedidaMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'dataDaMedida',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Medida, Medida, QAfterFilterCondition> dataDaMedidaIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'dataDaMedida',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Medida, Medida, QAfterFilterCondition> dataDaMedidaIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'dataDaMedida',
+        value: '',
       ));
     });
   }
@@ -881,9 +959,10 @@ extension MedidaQuerySortThenBy on QueryBuilder<Medida, Medida, QSortThenBy> {
 }
 
 extension MedidaQueryWhereDistinct on QueryBuilder<Medida, Medida, QDistinct> {
-  QueryBuilder<Medida, Medida, QDistinct> distinctByDataDaMedida() {
+  QueryBuilder<Medida, Medida, QDistinct> distinctByDataDaMedida(
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'dataDaMedida');
+      return query.addDistinctBy(r'dataDaMedida', caseSensitive: caseSensitive);
     });
   }
 
@@ -916,7 +995,7 @@ extension MedidaQueryProperty on QueryBuilder<Medida, Medida, QQueryProperty> {
     });
   }
 
-  QueryBuilder<Medida, DateTime, QQueryOperations> dataDaMedidaProperty() {
+  QueryBuilder<Medida, String, QQueryOperations> dataDaMedidaProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'dataDaMedida');
     });
