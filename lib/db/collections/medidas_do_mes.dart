@@ -8,5 +8,7 @@ class MedidasDoMes {
   Id id = Isar.autoIncrement;
 
   @Index()
-  late String dataDasMedidas;
+  late DateTime dataDasMedidas;
+
+  final medidas = IsarLinks<Medida>();
 }
