@@ -193,27 +193,28 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
       final medida = Medida();
       medida
         ..tipo = tiposDeMedida[i - 1]
-        ..unidade = msgDeMedidasDeCadaMes[i].msg
+        ..unidade = msgDeMedidasDeCadaMes[i].unidadeDeMedida
         ..valor = double.parse(controllers[i].text);
 
       medidas.add(medida);
     }
 
-    Provider.of<BancoDeDadosMetodos>(context, listen: false).addMedidas(
-      MedidasDoMes()
-        ..dataDasMedidas = dataSelecionada
-        ..bracoEsquerdo = medidas[0]
-        ..bracoDireito = medidas[1]
-        ..peito = medidas[2]
-        ..costas = medidas[3]
-        ..barriga = medidas[4]
-        ..cintura = medidas[5]
-        ..bumbum = medidas[6]
-        ..coxaEsquerda = medidas[7]
-        ..coxaDireita = medidas[8]
-        ..panturrilhaEsquerda = medidas[9]
-        ..panturrilhaDireita = medidas[10]
-        ..peso = medidas[11],
-    );
+    MedidasDoMes todasAsmedidas = MedidasDoMes()
+      ..dataDasMedidas = dataSelecionada
+      ..bracoEsquerdo = medidas[0]
+      ..bracoDireito = medidas[1]
+      ..peito = medidas[2]
+      ..costas = medidas[3]
+      ..barriga = medidas[4]
+      ..cintura = medidas[5]
+      ..bumbum = medidas[6]
+      ..coxaEsquerda = medidas[7]
+      ..coxaDireita = medidas[8]
+      ..panturrilhaEsquerda = medidas[9]
+      ..panturrilhaDireita = medidas[10]
+      ..peso = medidas[11];
+
+    Provider.of<BancoDeDadosMetodos>(context, listen: false)
+        .addMedidas(todasAsmedidas);
   }
 }

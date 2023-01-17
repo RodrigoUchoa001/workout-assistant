@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
           themeMode: Provider.of<TemaProvider>(context).modoDeTemaAtual,
           localizationsDelegates: GlobalMaterialLocalizations.delegates,
           supportedLocales: const [Locale('pt', 'BR')],
-          // home: TelaDeAddMedidasNew(dataPadrao: DateTime.now()),
+          //home: TelaDeAddMedidasNew(dataPadrao: DateTime.now()),
           home: feitoPrimeiroCadastro == true
               ? const TelaDaBottomNavBar()
               : TelaDeAddMedidasNew(dataPadrao: DateTime.now()),
