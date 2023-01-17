@@ -67,7 +67,8 @@ class TelaInicial extends StatelessWidget {
               ],
             ),
           ),
-          const ContainerDeExibicaoDeUltimasMedidas(),
+          //TODO: Exibir o ultimo mês cadastrado aqui
+          // const ContainerDeExibicaoDeUltimasMedidas(),
           //
           const SizedBox(height: 24),
           Container(
