@@ -2,14 +2,11 @@ import 'package:isar/isar.dart';
 
 part 'medida.g.dart';
 
-@Collection()
+@embedded
 class Medida {
-  Id id = Isar.autoIncrement;
+  late String tipo;
+  late double valor;
+  late String unidade;
 
-  @Index(unique: true, caseSensitive: false)
-  late String tipoDeMedida;
-
-  late double valorDaMedida;
-  late String unidadeDaMedida;
-  late DateTime dataDaMedida;
+  Medida();
 }

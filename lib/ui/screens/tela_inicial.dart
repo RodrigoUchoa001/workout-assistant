@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:measure_tracker/models/msg_de_add_medida.dart';
-import 'package:measure_tracker/ui/screens/tela_de_add_medida.dart';
+import 'package:measure_tracker/ui/screens/tela_de_add_medidas_new.dart';
 import 'package:measure_tracker/ui/widgets/container_de_exibicao_de_ultimas_medidas.dart';
 import 'package:measure_tracker/ui/widgets/container_de_info.dart';
 import 'package:measure_tracker/ui/widgets/conteudo_do_container_de_info_com_icone.dart';
@@ -25,9 +24,8 @@ class TelaInicial extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (_) => TelaDeAddMedida(
-                    msgsDeMedidas: msgDeMedidasDeCadaMes,
-                  ),
+                  builder: (_) =>
+                      TelaDeAddMedidasNew(dataPadrao: DateTime.now()),
                 ),
               );
             },

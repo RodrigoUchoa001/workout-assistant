@@ -17,10 +17,82 @@ const MedidasDoMesSchema = CollectionSchema(
   name: r'MedidasDoMes',
   id: 4200396868035578312,
   properties: {
-    r'dataDasMedidas': PropertySchema(
+    r'barriga': PropertySchema(
       id: 0,
+      name: r'barriga',
+      type: IsarType.object,
+      target: r'Medida',
+    ),
+    r'bracoDireito': PropertySchema(
+      id: 1,
+      name: r'bracoDireito',
+      type: IsarType.object,
+      target: r'Medida',
+    ),
+    r'bracoEsquerdo': PropertySchema(
+      id: 2,
+      name: r'bracoEsquerdo',
+      type: IsarType.object,
+      target: r'Medida',
+    ),
+    r'bumbum': PropertySchema(
+      id: 3,
+      name: r'bumbum',
+      type: IsarType.object,
+      target: r'Medida',
+    ),
+    r'cintura': PropertySchema(
+      id: 4,
+      name: r'cintura',
+      type: IsarType.object,
+      target: r'Medida',
+    ),
+    r'costas': PropertySchema(
+      id: 5,
+      name: r'costas',
+      type: IsarType.object,
+      target: r'Medida',
+    ),
+    r'coxaDireita': PropertySchema(
+      id: 6,
+      name: r'coxaDireita',
+      type: IsarType.object,
+      target: r'Medida',
+    ),
+    r'coxaEsquerda': PropertySchema(
+      id: 7,
+      name: r'coxaEsquerda',
+      type: IsarType.object,
+      target: r'Medida',
+    ),
+    r'dataDasMedidas': PropertySchema(
+      id: 8,
       name: r'dataDasMedidas',
       type: IsarType.dateTime,
+    ),
+    r'panturrilhaDireita': PropertySchema(
+      id: 9,
+      name: r'panturrilhaDireita',
+      type: IsarType.object,
+      target: r'Medida',
+    ),
+    r'panturrilhaEsquerda': PropertySchema(
+      id: 10,
+      name: r'panturrilhaEsquerda',
+      type: IsarType.object,
+      target: r'Medida',
+    ),
+    r'peito': PropertySchema(
+      id: 11,
+      name: r'peito',
+      type: IsarType.object,
+      target: r'Medida',
+    ),
+    r'peso': PropertySchema(
+      id: 12,
+      name: r'peso',
+      type: IsarType.object,
+      target: r'Medida',
     )
   },
   estimateSize: _medidasDoMesEstimateSize,
@@ -43,15 +115,8 @@ const MedidasDoMesSchema = CollectionSchema(
       ],
     )
   },
-  links: {
-    r'medidas': LinkSchema(
-      id: -2621654811910363135,
-      name: r'medidas',
-      target: r'Medida',
-      single: false,
-    )
-  },
-  embeddedSchemas: {},
+  links: {},
+  embeddedSchemas: {r'Medida': MedidaSchema},
   getId: _medidasDoMesGetId,
   getLinks: _medidasDoMesGetLinks,
   attach: _medidasDoMesAttach,
@@ -64,6 +129,38 @@ int _medidasDoMesEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
+  bytesCount += 3 +
+      MedidaSchema.estimateSize(
+          object.barriga, allOffsets[Medida]!, allOffsets);
+  bytesCount += 3 +
+      MedidaSchema.estimateSize(
+          object.bracoDireito, allOffsets[Medida]!, allOffsets);
+  bytesCount += 3 +
+      MedidaSchema.estimateSize(
+          object.bracoEsquerdo, allOffsets[Medida]!, allOffsets);
+  bytesCount += 3 +
+      MedidaSchema.estimateSize(object.bumbum, allOffsets[Medida]!, allOffsets);
+  bytesCount += 3 +
+      MedidaSchema.estimateSize(
+          object.cintura, allOffsets[Medida]!, allOffsets);
+  bytesCount += 3 +
+      MedidaSchema.estimateSize(object.costas, allOffsets[Medida]!, allOffsets);
+  bytesCount += 3 +
+      MedidaSchema.estimateSize(
+          object.coxaDireita, allOffsets[Medida]!, allOffsets);
+  bytesCount += 3 +
+      MedidaSchema.estimateSize(
+          object.coxaEsquerda, allOffsets[Medida]!, allOffsets);
+  bytesCount += 3 +
+      MedidaSchema.estimateSize(
+          object.panturrilhaDireita, allOffsets[Medida]!, allOffsets);
+  bytesCount += 3 +
+      MedidaSchema.estimateSize(
+          object.panturrilhaEsquerda, allOffsets[Medida]!, allOffsets);
+  bytesCount += 3 +
+      MedidaSchema.estimateSize(object.peito, allOffsets[Medida]!, allOffsets);
+  bytesCount += 3 +
+      MedidaSchema.estimateSize(object.peso, allOffsets[Medida]!, allOffsets);
   return bytesCount;
 }
 
@@ -73,7 +170,79 @@ void _medidasDoMesSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeDateTime(offsets[0], object.dataDasMedidas);
+  writer.writeObject<Medida>(
+    offsets[0],
+    allOffsets,
+    MedidaSchema.serialize,
+    object.barriga,
+  );
+  writer.writeObject<Medida>(
+    offsets[1],
+    allOffsets,
+    MedidaSchema.serialize,
+    object.bracoDireito,
+  );
+  writer.writeObject<Medida>(
+    offsets[2],
+    allOffsets,
+    MedidaSchema.serialize,
+    object.bracoEsquerdo,
+  );
+  writer.writeObject<Medida>(
+    offsets[3],
+    allOffsets,
+    MedidaSchema.serialize,
+    object.bumbum,
+  );
+  writer.writeObject<Medida>(
+    offsets[4],
+    allOffsets,
+    MedidaSchema.serialize,
+    object.cintura,
+  );
+  writer.writeObject<Medida>(
+    offsets[5],
+    allOffsets,
+    MedidaSchema.serialize,
+    object.costas,
+  );
+  writer.writeObject<Medida>(
+    offsets[6],
+    allOffsets,
+    MedidaSchema.serialize,
+    object.coxaDireita,
+  );
+  writer.writeObject<Medida>(
+    offsets[7],
+    allOffsets,
+    MedidaSchema.serialize,
+    object.coxaEsquerda,
+  );
+  writer.writeDateTime(offsets[8], object.dataDasMedidas);
+  writer.writeObject<Medida>(
+    offsets[9],
+    allOffsets,
+    MedidaSchema.serialize,
+    object.panturrilhaDireita,
+  );
+  writer.writeObject<Medida>(
+    offsets[10],
+    allOffsets,
+    MedidaSchema.serialize,
+    object.panturrilhaEsquerda,
+  );
+  writer.writeObject<Medida>(
+    offsets[11],
+    allOffsets,
+    MedidaSchema.serialize,
+    object.peito,
+  );
+  writer.writeObject<Medida>(
+    offsets[12],
+    allOffsets,
+    MedidaSchema.serialize,
+    object.peso,
+  );
 }
 
 MedidasDoMes _medidasDoMesDeserialize(
@@ -83,8 +252,80 @@ MedidasDoMes _medidasDoMesDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = MedidasDoMes();
-  object.dataDasMedidas = reader.readDateTime(offsets[0]);
+  object.barriga = reader.readObjectOrNull<Medida>(
+        offsets[0],
+        MedidaSchema.deserialize,
+        allOffsets,
+      ) ??
+      Medida();
+  object.bracoDireito = reader.readObjectOrNull<Medida>(
+        offsets[1],
+        MedidaSchema.deserialize,
+        allOffsets,
+      ) ??
+      Medida();
+  object.bracoEsquerdo = reader.readObjectOrNull<Medida>(
+        offsets[2],
+        MedidaSchema.deserialize,
+        allOffsets,
+      ) ??
+      Medida();
+  object.bumbum = reader.readObjectOrNull<Medida>(
+        offsets[3],
+        MedidaSchema.deserialize,
+        allOffsets,
+      ) ??
+      Medida();
+  object.cintura = reader.readObjectOrNull<Medida>(
+        offsets[4],
+        MedidaSchema.deserialize,
+        allOffsets,
+      ) ??
+      Medida();
+  object.costas = reader.readObjectOrNull<Medida>(
+        offsets[5],
+        MedidaSchema.deserialize,
+        allOffsets,
+      ) ??
+      Medida();
+  object.coxaDireita = reader.readObjectOrNull<Medida>(
+        offsets[6],
+        MedidaSchema.deserialize,
+        allOffsets,
+      ) ??
+      Medida();
+  object.coxaEsquerda = reader.readObjectOrNull<Medida>(
+        offsets[7],
+        MedidaSchema.deserialize,
+        allOffsets,
+      ) ??
+      Medida();
+  object.dataDasMedidas = reader.readDateTime(offsets[8]);
   object.id = id;
+  object.panturrilhaDireita = reader.readObjectOrNull<Medida>(
+        offsets[9],
+        MedidaSchema.deserialize,
+        allOffsets,
+      ) ??
+      Medida();
+  object.panturrilhaEsquerda = reader.readObjectOrNull<Medida>(
+        offsets[10],
+        MedidaSchema.deserialize,
+        allOffsets,
+      ) ??
+      Medida();
+  object.peito = reader.readObjectOrNull<Medida>(
+        offsets[11],
+        MedidaSchema.deserialize,
+        allOffsets,
+      ) ??
+      Medida();
+  object.peso = reader.readObjectOrNull<Medida>(
+        offsets[12],
+        MedidaSchema.deserialize,
+        allOffsets,
+      ) ??
+      Medida();
   return object;
 }
 
@@ -96,7 +337,91 @@ P _medidasDoMesDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
+      return (reader.readObjectOrNull<Medida>(
+            offset,
+            MedidaSchema.deserialize,
+            allOffsets,
+          ) ??
+          Medida()) as P;
+    case 1:
+      return (reader.readObjectOrNull<Medida>(
+            offset,
+            MedidaSchema.deserialize,
+            allOffsets,
+          ) ??
+          Medida()) as P;
+    case 2:
+      return (reader.readObjectOrNull<Medida>(
+            offset,
+            MedidaSchema.deserialize,
+            allOffsets,
+          ) ??
+          Medida()) as P;
+    case 3:
+      return (reader.readObjectOrNull<Medida>(
+            offset,
+            MedidaSchema.deserialize,
+            allOffsets,
+          ) ??
+          Medida()) as P;
+    case 4:
+      return (reader.readObjectOrNull<Medida>(
+            offset,
+            MedidaSchema.deserialize,
+            allOffsets,
+          ) ??
+          Medida()) as P;
+    case 5:
+      return (reader.readObjectOrNull<Medida>(
+            offset,
+            MedidaSchema.deserialize,
+            allOffsets,
+          ) ??
+          Medida()) as P;
+    case 6:
+      return (reader.readObjectOrNull<Medida>(
+            offset,
+            MedidaSchema.deserialize,
+            allOffsets,
+          ) ??
+          Medida()) as P;
+    case 7:
+      return (reader.readObjectOrNull<Medida>(
+            offset,
+            MedidaSchema.deserialize,
+            allOffsets,
+          ) ??
+          Medida()) as P;
+    case 8:
       return (reader.readDateTime(offset)) as P;
+    case 9:
+      return (reader.readObjectOrNull<Medida>(
+            offset,
+            MedidaSchema.deserialize,
+            allOffsets,
+          ) ??
+          Medida()) as P;
+    case 10:
+      return (reader.readObjectOrNull<Medida>(
+            offset,
+            MedidaSchema.deserialize,
+            allOffsets,
+          ) ??
+          Medida()) as P;
+    case 11:
+      return (reader.readObjectOrNull<Medida>(
+            offset,
+            MedidaSchema.deserialize,
+            allOffsets,
+          ) ??
+          Medida()) as P;
+    case 12:
+      return (reader.readObjectOrNull<Medida>(
+            offset,
+            MedidaSchema.deserialize,
+            allOffsets,
+          ) ??
+          Medida()) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -107,13 +432,12 @@ Id _medidasDoMesGetId(MedidasDoMes object) {
 }
 
 List<IsarLinkBase<dynamic>> _medidasDoMesGetLinks(MedidasDoMes object) {
-  return [object.medidas];
+  return [];
 }
 
 void _medidasDoMesAttach(
     IsarCollection<dynamic> col, Id id, MedidasDoMes object) {
   object.id = id;
-  object.medidas.attach(col, col.isar.collection<Medida>(), r'medidas', id);
 }
 
 extension MedidasDoMesQueryWhereSort
@@ -409,71 +733,94 @@ extension MedidasDoMesQueryFilter
 }
 
 extension MedidasDoMesQueryObject
-    on QueryBuilder<MedidasDoMes, MedidasDoMes, QFilterCondition> {}
-
-extension MedidasDoMesQueryLinks
     on QueryBuilder<MedidasDoMes, MedidasDoMes, QFilterCondition> {
-  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition> medidas(
+  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition> barriga(
       FilterQuery<Medida> q) {
     return QueryBuilder.apply(this, (query) {
-      return query.link(q, r'medidas');
+      return query.object(q, r'barriga');
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition> bracoDireito(
+      FilterQuery<Medida> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'bracoDireito');
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition> bracoEsquerdo(
+      FilterQuery<Medida> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'bracoEsquerdo');
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition> bumbum(
+      FilterQuery<Medida> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'bumbum');
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition> cintura(
+      FilterQuery<Medida> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'cintura');
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition> costas(
+      FilterQuery<Medida> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'costas');
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition> coxaDireita(
+      FilterQuery<Medida> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'coxaDireita');
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition> coxaEsquerda(
+      FilterQuery<Medida> q) {
+    return QueryBuilder.apply(this, (query) {
+      return query.object(q, r'coxaEsquerda');
     });
   }
 
   QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
-      medidasLengthEqualTo(int length) {
+      panturrilhaDireita(FilterQuery<Medida> q) {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'medidas', length, true, length, true);
+      return query.object(q, r'panturrilhaDireita');
     });
   }
 
   QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
-      medidasIsEmpty() {
+      panturrilhaEsquerda(FilterQuery<Medida> q) {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'medidas', 0, true, 0, true);
+      return query.object(q, r'panturrilhaEsquerda');
     });
   }
 
-  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
-      medidasIsNotEmpty() {
+  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition> peito(
+      FilterQuery<Medida> q) {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'medidas', 0, false, 999999, true);
+      return query.object(q, r'peito');
     });
   }
 
-  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
-      medidasLengthLessThan(
-    int length, {
-    bool include = false,
-  }) {
+  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition> peso(
+      FilterQuery<Medida> q) {
     return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'medidas', 0, true, length, include);
-    });
-  }
-
-  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
-      medidasLengthGreaterThan(
-    int length, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(r'medidas', length, include, 999999, true);
-    });
-  }
-
-  QueryBuilder<MedidasDoMes, MedidasDoMes, QAfterFilterCondition>
-      medidasLengthBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.linkLength(
-          r'medidas', lower, includeLower, upper, includeUpper);
+      return query.object(q, r'peso');
     });
   }
 }
+
+extension MedidasDoMesQueryLinks
+    on QueryBuilder<MedidasDoMes, MedidasDoMes, QFilterCondition> {}
 
 extension MedidasDoMesQuerySortBy
     on QueryBuilder<MedidasDoMes, MedidasDoMes, QSortBy> {
@@ -539,10 +886,84 @@ extension MedidasDoMesQueryProperty
     });
   }
 
+  QueryBuilder<MedidasDoMes, Medida, QQueryOperations> barrigaProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'barriga');
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, Medida, QQueryOperations> bracoDireitoProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'bracoDireito');
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, Medida, QQueryOperations> bracoEsquerdoProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'bracoEsquerdo');
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, Medida, QQueryOperations> bumbumProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'bumbum');
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, Medida, QQueryOperations> cinturaProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'cintura');
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, Medida, QQueryOperations> costasProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'costas');
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, Medida, QQueryOperations> coxaDireitaProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'coxaDireita');
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, Medida, QQueryOperations> coxaEsquerdaProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'coxaEsquerda');
+    });
+  }
+
   QueryBuilder<MedidasDoMes, DateTime, QQueryOperations>
       dataDasMedidasProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'dataDasMedidas');
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, Medida, QQueryOperations>
+      panturrilhaDireitaProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'panturrilhaDireita');
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, Medida, QQueryOperations>
+      panturrilhaEsquerdaProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'panturrilhaEsquerda');
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, Medida, QQueryOperations> peitoProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'peito');
+    });
+  }
+
+  QueryBuilder<MedidasDoMes, Medida, QQueryOperations> pesoProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'peso');
     });
   }
 }

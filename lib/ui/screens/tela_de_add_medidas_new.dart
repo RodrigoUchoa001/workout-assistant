@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:measure_tracker/db/banco_de_dados_metodos.dart';
+import 'package:measure_tracker/db/collections/medida.dart';
+import 'package:measure_tracker/db/collections/medidas_do_mes.dart';
 import 'package:measure_tracker/models/msg_de_add_medida.dart';
 import 'package:measure_tracker/ui/screens/tela_da_bottom_nav_bar.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TelaDeAddMedidasNew extends StatefulWidget {
@@ -14,10 +18,12 @@ class TelaDeAddMedidasNew extends StatefulWidget {
 
 class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
   int stepAtual = 0;
-  List<TextEditingController> controllers = [];
+  List<dynamic> controllers = [];
+  late DateTime dataSelecionada;
 
   @override
   void initState() {
+    dataSelecionada = widget.dataPadrao;
     controllers = getControllers();
     controllers[0].text = getDataFormatada(widget.dataPadrao);
     super.initState();
@@ -36,7 +42,7 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
             final ultimoStep = stepAtual == getSteps(context).length - 1;
 
             if (ultimoStep) {
-              salvarDadosNoBD();
+              concluirCadastro();
             } else {
               setState(() => stepAtual++);
             }
@@ -134,6 +140,7 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
     setState(
       () {
         // String dataFormato = DateFormat('dd/MM/yyyy').format(novaData);
+        dataSelecionada = novaData;
         controllers[posicao].text = getDataFormatada(novaData);
       },
     );
@@ -143,8 +150,10 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
     return DateFormat('dd/MM/yyyy').format(data);
   }
 
-  void salvarDadosNoBD() {
+  void concluirCadastro() {
     // TODO: comando pra inserir no bd
+    _salvarNoBD();
+
     _setPrimeiroCadastroComoConcluido();
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
@@ -161,5 +170,50 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
   _setPrimeiroCadastroComoConcluido() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('feitoPrimeiroCadastro', true);
+  }
+
+  _salvarNoBD() {
+    List<String> tiposDeMedida = [
+      'Braço Esquerdo',
+      'Braço Direito',
+      'Peito',
+      'Costas',
+      'Barriga',
+      'Cintura',
+      'Bumbum',
+      'Coxa Esquerda',
+      'Coxa Direita',
+      'Panturrilha Esquerda',
+      'Panturrilha Direita',
+      'Peso',
+    ];
+
+    List<Medida> medidas = [];
+    for (var i = 1; i < controllers.length; i++) {
+      final medida = Medida();
+      medida
+        ..tipo = tiposDeMedida[i - 1]
+        ..unidade = msgDeMedidasDeCadaMes[i].msg
+        ..valor = double.parse(controllers[i].text);
+
+      medidas.add(medida);
+    }
+
+    Provider.of<BancoDeDadosMetodos>(context, listen: false).addMedidas(
+      MedidasDoMes()
+        ..dataDasMedidas = dataSelecionada
+        ..bracoEsquerdo = medidas[0]
+        ..bracoDireito = medidas[1]
+        ..peito = medidas[2]
+        ..costas = medidas[3]
+        ..barriga = medidas[4]
+        ..cintura = medidas[5]
+        ..bumbum = medidas[6]
+        ..coxaEsquerda = medidas[7]
+        ..coxaDireita = medidas[8]
+        ..panturrilhaEsquerda = medidas[9]
+        ..panturrilhaDireita = medidas[10]
+        ..peso = medidas[11],
+    );
   }
 }

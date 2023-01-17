@@ -7,9 +7,19 @@ part 'medidas_do_mes.g.dart';
 class MedidasDoMes {
   Id id = Isar.autoIncrement;
 
-  // MedidasDoMes agr pode se relacionar com varias Medida
-  final medidas = IsarLinks<Medida>();
-
   @Index()
   late DateTime dataDasMedidas;
+
+  late Medida bracoEsquerdo;
+  late Medida bracoDireito;
+  late Medida peito;
+  late Medida costas;
+  late Medida barriga;
+  late Medida cintura;
+  late Medida bumbum;
+  late Medida coxaEsquerda;
+  late Medida coxaDireita;
+  late Medida panturrilhaEsquerda;
+  late Medida panturrilhaDireita;
+  late Medida peso;
 }
