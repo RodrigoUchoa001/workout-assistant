@@ -11,50 +11,10 @@ class BancoDeDadosMetodos {
   /// a lista que vem no parametro virá na seguinte ordem:
   /// [data, braço esq, braço dir, peito, costas, barriga, cintura, bumbum,
   /// coxa esq, coxa dir, panturrilha esq, panturrilha dir, peso]
-  void addCadaMedida(List<dynamic> controllers) async {
-    List<String> tiposDeMedida = [
-      'Braço Esquerdo',
-      'Braço Direito',
-      'Peito',
-      'Costas',
-      'Barriga',
-      'Cintura',
-      'Bumbum',
-      'Coxa Esquerda',
-      'Coxa Direita',
-      'Panturrilha Esquerda',
-      'Panturrilha Direita',
-      'Peso',
-    ];
-
-    addMedidasDoMes(controllers[0]); //adicionou o mes da medida
-
-    for (int i = 1; i < controllers.length; i++) {
-      addMedida(Medida()
-        ..tipo = tiposDeMedida[i - 1]
-        ..valor = double.parse(controllers[i].text)
-        ..unidade = msgDeMedidasDeCadaMes[i].unidadeDeMedida);
-    }
-    medidasDoMesDaVez.medidas.save();
-  }
-
-  late MedidasDoMes medidasDoMesDaVez;
-  void addMedidasDoMes(DateTime data) async {
-    final novasMedidasDoMes = MedidasDoMes()..dataDasMedidas = data;
-    medidasDoMesDaVez = novasMedidasDoMes;
-
+  void addMedidas(MedidasDoMes medidas) async {
     await isar.writeTxn(() async {
-      await isar.medidasDoMes.put(novasMedidasDoMes);
+      await isar.medidasDoMes.put(medidas);
     });
-  }
-
-  /// inserir medida individualmente
-  void addMedida(Medida medida) async {
-    await isar.writeTxn(
-      () async {
-        await isar.medidas.put(medida);
-      },
-    );
   }
 
   // MÉTODOS DE GET
