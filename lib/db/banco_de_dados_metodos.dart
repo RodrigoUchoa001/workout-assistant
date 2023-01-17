@@ -1,8 +1,6 @@
 // import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
-import 'package:measure_tracker/db/collections/medida.dart';
 import 'package:measure_tracker/db/collections/medidas_do_mes.dart';
-import 'package:measure_tracker/models/msg_de_add_medida.dart';
 
 class BancoDeDadosMetodos {
   Isar isar;
@@ -19,7 +17,7 @@ class BancoDeDadosMetodos {
 
   // MÉTODOS DE GET
   //
-
+  // TODO: Se possível, encontrar forma de funcionar no computador
   Future<List<MedidasDoMes>> getMedidasDoMes() async {
     // final getMedidasDoMes = await isar.medidasDoMes.where().findAll();
     // return getMedidasDoMes;

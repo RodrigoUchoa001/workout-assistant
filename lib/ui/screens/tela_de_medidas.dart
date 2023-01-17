@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:measure_tracker/db/banco_de_dados_metodos.dart';
+import 'package:measure_tracker/db/collections/medidas_do_mes.dart';
 import 'package:measure_tracker/ui/widgets/container_de_exibicao_de_ultimas_medidas.dart';
+import 'package:provider/provider.dart';
 
 class TelaDeMedidas extends StatelessWidget {
   const TelaDeMedidas({super.key});
@@ -17,17 +20,13 @@ class TelaDeMedidas extends StatelessWidget {
               style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
-          ListView.builder(
-            itemCount: 3,
-            shrinkWrap: true,
-            physics: const BouncingScrollPhysics(),
-            itemBuilder: (context, index) {
-              return Column(
-                children: const [
-                  ContainerDeExibicaoDeUltimasMedidas(),
-                  SizedBox(height: 24),
-                ],
-              );
+          FutureBuilder(
+            future: _getListaDeMedidas(context),
+            builder: (context, AsyncSnapshot<Widget> snapshot) {
+              if (snapshot.hasData) {
+                return snapshot.data!;
+              }
+              return const CircularProgressIndicator();
             },
           ),
           Column(
@@ -39,6 +38,28 @@ class TelaDeMedidas extends StatelessWidget {
           const SizedBox(height: 24),
         ],
       ),
+    );
+  }
+
+  Future<Widget> _getListaDeMedidas(BuildContext context) async {
+    final provider = Provider.of<BancoDeDadosMetodos>(context);
+
+    List<MedidasDoMes> medidasDoMes = await provider.getMedidasDoMes();
+
+    return ListView.builder(
+      itemCount: medidasDoMes.length,
+      shrinkWrap: true,
+      physics: const BouncingScrollPhysics(),
+      itemBuilder: (context, index) {
+        return Column(
+          children: [
+            ContainerDeExibicaoDeUltimasMedidas(
+              medidaDoMes: medidasDoMes[index],
+            ),
+            const SizedBox(height: 24),
+          ],
+        );
+      },
     );
   }
 }
