@@ -17,7 +17,7 @@ class BancoDeDadosMetodos {
 
   // MÉTODOS DE GET
   //
-
+  // TODO: Se possível, encontrar forma de funcionar no computador
   Future<List<MedidasDoMes>> getMedidasDoMes() async {
     // final getMedidasDoMes = await isar.medidasDoMes.where().findAll();
     // return getMedidasDoMes;
