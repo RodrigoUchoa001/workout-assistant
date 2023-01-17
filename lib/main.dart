@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:isar/isar.dart';
 import 'package:measure_tracker/db/banco_de_dados_metodos.dart';
-import 'package:measure_tracker/db/collections/medida.dart';
 import 'package:measure_tracker/db/collections/medidas_do_mes.dart';
 import 'package:measure_tracker/ui/change_providers/pagina_exibida_provider.dart';
 import 'package:measure_tracker/ui/change_providers/tema_provider.dart';
@@ -20,7 +19,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final dir = await getApplicationSupportDirectory();
   final isar = await Isar.open(
-    [MedidaSchema, MedidasDoMesSchema],
+    [MedidasDoMesSchema],
     directory: dir.path,
   );
 
