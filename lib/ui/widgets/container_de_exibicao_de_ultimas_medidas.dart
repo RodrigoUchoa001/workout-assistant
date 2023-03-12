@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:measure_tracker/db/collections/medida.dart';
 import 'package:measure_tracker/db/collections/medidas_do_mes.dart';
 import 'package:measure_tracker/ui/widgets/container_de_exibicao_de_medida_e_diferenca.dart';
+import 'package:measure_tracker/utils/formatador_de_data.dart';
 
 class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
   final MedidasDoMes medidaDoMes;
@@ -24,7 +25,7 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 2),
                   child: Text(
-                    "${medidaDoMes.dataDasMedidas}",
+                    formatarDataEHora(medidaDoMes.dataDasMedidas),
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontWeight: FontWeight.normal,
                           fontSize: 20,
