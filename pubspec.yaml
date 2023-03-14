@@ -41,6 +41,7 @@ dependencies:
   shared_preferences: ^2.0.15
   flutter_localizations:
     sdk: flutter
+  jiffy: ^5.0.0
 
 dev_dependencies:
   build_runner: ^2.3.3
