@@ -5,7 +5,8 @@ import 'package:measure_tracker/ui/widgets/container_de_exibicao_de_ultimas_medi
 import 'package:provider/provider.dart';
 
 class TelaDeMedidas extends StatelessWidget {
-  const TelaDeMedidas({super.key});
+  TelaDeMedidas({super.key});
+  List<Widget> meses = [];
 
   @override
   Widget build(BuildContext context) {
