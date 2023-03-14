@@ -9,10 +9,10 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 class TelaDaBottomNavBar extends StatelessWidget {
   const TelaDaBottomNavBar({super.key});
 
-  static List<Widget> telasDoApp = [
-    const TelaInicial(),
+  static const List<Widget> telasDoApp = [
+    TelaInicial(),
     TelaDeMedidas(),
-    const TelaDeTreinos(),
+    TelaDeTreinos(),
   ];
 
   @override

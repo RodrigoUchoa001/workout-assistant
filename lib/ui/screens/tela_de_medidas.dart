@@ -4,8 +4,14 @@ import 'package:measure_tracker/db/collections/medidas_do_mes.dart';
 import 'package:measure_tracker/ui/widgets/container_de_exibicao_de_ultimas_medidas.dart';
 import 'package:provider/provider.dart';
 
-class TelaDeMedidas extends StatelessWidget {
-  TelaDeMedidas({super.key});
+class TelaDeMedidas extends StatefulWidget {
+  const TelaDeMedidas({super.key});
+
+  @override
+  State<TelaDeMedidas> createState() => _TelaDeMedidasState();
+}
+
+class _TelaDeMedidasState extends State<TelaDeMedidas> {
   List<Widget> meses = [];
 
   @override
