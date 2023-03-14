@@ -21,7 +21,8 @@ class BancoDeDadosMetodos {
   Future<List<MedidasDoMes>> getMedidasDoMes() async {
     // final getMedidasDoMes = await isar.medidasDoMes.where().findAll();
     // return getMedidasDoMes;
-    final medidasDoMes = await isar.medidasDoMes.where().findAll();
+    final medidasDoMes =
+        await isar.medidasDoMes.where().sortByDataDasMedidasDesc().findAll();
     return medidasDoMes;
   }
 
