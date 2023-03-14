@@ -22,7 +22,6 @@ class MesesAindaNaoPreenchidosController extends ChangeNotifier {
     }
 
     // pois queremos as datas na ordem decrescente
-    mesesAAtualizar = mesesAAtualizar.reversed.toList();
     notifyListeners();
   }
 
