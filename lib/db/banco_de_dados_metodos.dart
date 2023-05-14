@@ -26,6 +26,14 @@ class BancoDeDadosMetodos {
     return medidasDoMes;
   }
 
+  Future<MedidasDoMes> getUltimaMedidaDoMes() async {
+    // final getMedidasDoMes = await isar.medidasDoMes.where().findAll();
+    // return getMedidasDoMes;
+    final medidasDoMes =
+        await isar.medidasDoMes.where().sortByDataDasMedidasDesc().findFirst();
+    return medidasDoMes!;
+  }
+
   // getMedidas(MedidasDoMes medidasDoMes) async {
   //   final getMedidas = await isar.medidas
   //       .filter()

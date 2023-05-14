@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:measure_tracker/db/banco_de_dados_metodos.dart';
+import 'package:measure_tracker/db/collections/medidas_do_mes.dart';
 import 'package:measure_tracker/ui/screens/tela_de_add_medidas_new.dart';
 import 'package:measure_tracker/ui/widgets/container_de_exibicao_de_ultimas_medidas.dart';
 import 'package:measure_tracker/ui/widgets/container_de_info.dart';
 import 'package:measure_tracker/ui/widgets/conteudo_do_container_de_info_com_icone.dart';
+import 'package:provider/provider.dart';
 
 class TelaInicial extends StatelessWidget {
   const TelaInicial({super.key});
@@ -67,9 +70,15 @@ class TelaInicial extends StatelessWidget {
               ],
             ),
           ),
-          //TODO: Exibir o ultimo mês cadastrado aqui
-          // const ContainerDeExibicaoDeUltimasMedidas(),
-          //
+          FutureBuilder(
+            future: _getUltimaMedida(context),
+            builder: (context, AsyncSnapshot<Widget> snapshot) {
+              if (snapshot.hasData) {
+                return snapshot.data!;
+              }
+              return const CircularProgressIndicator();
+            },
+          ),
           const SizedBox(height: 24),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16),
@@ -88,6 +97,16 @@ class TelaInicial extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Future<Widget> _getUltimaMedida(BuildContext context) async {
+    final provider = Provider.of<BancoDeDadosMetodos>(context);
+
+    MedidasDoMes medidasDoMes = await provider.getUltimaMedidaDoMes();
+
+    return ContainerDeExibicaoDeUltimasMedidas(
+      medidaDoMes: medidasDoMes,
     );
   }
 }
