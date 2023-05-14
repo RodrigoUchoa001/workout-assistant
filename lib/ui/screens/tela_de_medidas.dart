@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:measure_tracker/db/banco_de_dados_metodos.dart';
 import 'package:measure_tracker/db/collections/medidas_do_mes.dart';
+import 'package:measure_tracker/ui/screens/tela_de_add_medidas_new.dart';
 import 'package:measure_tracker/ui/widgets/container_de_exibicao_de_ultimas_medidas.dart';
 import 'package:measure_tracker/ui/widgets/container_de_info.dart';
 import 'package:measure_tracker/ui/widgets/conteudo_do_container_de_info_com_icone.dart';
@@ -110,7 +111,15 @@ class _TelaDeMedidasState extends State<TelaDeMedidas> {
               titulo: 'Este mês ainda não foi atualizado:',
               subtitulo: '${mesAPrencher.month}/${mesAPrencher.year}',
               acao: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          TelaDeAddMedidasNew(dataPadrao: mesAPrencher),
+                    ),
+                  );
+                },
                 style: const ButtonStyle(
                   backgroundColor:
                       MaterialStatePropertyAll<Color>(Colors.black),
