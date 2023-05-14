@@ -8,9 +8,6 @@ class MesesAindaNaoPreenchidosController extends ChangeNotifier {
   bool temUmMesDeDiferenca(DateTime data1, DateTime data2) {
     Duration diferenca = data2.difference(data1);
 
-    // TODO: REMOVER DEBUGPRINT
-    debugPrint("a diferenca foi de: $diferenca");
-
     if (diferenca.inDays < 30) {
       return false;
     }

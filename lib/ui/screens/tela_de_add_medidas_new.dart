@@ -151,7 +151,6 @@ class _TelaDeAddMedidasNewState extends State<TelaDeAddMedidasNew> {
   }
 
   void concluirCadastro() {
-    // TODO: comando pra inserir no bd
     _salvarNoBD();
 
     _setPrimeiroCadastroComoConcluido();
