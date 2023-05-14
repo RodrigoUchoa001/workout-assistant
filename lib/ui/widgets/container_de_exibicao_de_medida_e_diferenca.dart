@@ -29,7 +29,7 @@ class ContainerDeExibicaoDeMedidaEDiferenca extends StatelessWidget {
     if (diferencaDeMedida > 0) {
       return Theme.of(context).highlightColor;
     } else if (diferencaDeMedida.toInt() < 0) {
-      return Theme.of(context).errorColor;
+      return Colors.red.shade300;
     } else {
       return Theme.of(context).focusColor;
     }
