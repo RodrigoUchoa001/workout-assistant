@@ -7,6 +7,7 @@ import 'package:measure_tracker/ui/change_providers/pagina_exibida_provider.dart
 import 'package:measure_tracker/ui/change_providers/tema_provider.dart';
 import 'package:measure_tracker/ui/screens/tela_da_bottom_nav_bar.dart';
 import 'package:measure_tracker/ui/screens/tela_de_add_medidas_new.dart';
+import 'package:measure_tracker/utils/meses_ainda_nao_preenchidos_controller.dart';
 import 'package:provider/provider.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -41,8 +42,14 @@ class MyApp extends StatelessWidget {
         Provider<BancoDeDadosMetodos>(create: (_) => BancoDeDadosMetodos(isar)),
         ChangeNotifierProvider(create: (_) => TemaProvider()),
         ChangeNotifierProvider(create: (_) => PaginaExibidaProvider()),
+        ChangeNotifierProvider(
+          create: (_) => MesesAindaNaoPreenchidosController(),
+        ),
       ],
       builder: (context, child) {
+        // pra funcionar o controller de meses ainda n preenchidos
+        setUltimaDataAtualizada(context);
+
         return MaterialApp(
           title: 'Workout Assistant',
           debugShowCheckedModeBanner: false,
@@ -58,5 +65,18 @@ class MyApp extends StatelessWidget {
         );
       },
     );
+  }
+
+  void setUltimaDataAtualizada(BuildContext context) async {
+    final providerMedidas = Provider.of<BancoDeDadosMetodos>(context);
+    List<MedidasDoMes> medidasDoMes = await providerMedidas.getMedidasDoMes();
+
+    final providerMesesAAtualizarController =
+        Provider.of<MesesAindaNaoPreenchidosController>(context, listen: false);
+
+    if (medidasDoMes.isNotEmpty) {
+      providerMesesAAtualizarController.setMesesAindaNaoPreenchidosController(
+          medidasDoMes[0].dataDasMedidas);
+    }
   }
 }
