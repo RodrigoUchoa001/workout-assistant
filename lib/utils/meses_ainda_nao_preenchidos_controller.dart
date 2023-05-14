@@ -5,21 +5,30 @@ import 'package:flutter/material.dart';
 class MesesAindaNaoPreenchidosController extends ChangeNotifier {
   List<DateTime> mesesAAtualizar = [];
 
+  bool temUmMesDeDiferenca(DateTime data1, DateTime data2) {
+    Duration diferenca = data2.difference(data1);
+
+    // TODO: REMOVER DEBUGPRINT
+    debugPrint("a diferenca foi de: $diferenca");
+
+    if (diferenca.inDays < 30) {
+      return false;
+    }
+    return true;
+  }
+
   void setMesesAindaNaoPreenchidosController(DateTime dataDaUltimaAtualizacao) {
     mesesAAtualizar.clear();
     DateTime dataATestar = dataDaUltimaAtualizacao;
-    DateTime agora = DateTime.now();
 
-    while (dataATestar.isBefore(
-      DateTime(agora.year, agora.month - 1, agora.day),
-    )) {
+    while (temUmMesDeDiferenca(dataATestar, DateTime.now())) {
+      mesesAAtualizar.add(dataATestar);
+
       dataATestar = DateTime(
         dataATestar.year,
         dataATestar.month + 1,
         dataATestar.day,
       );
-
-      mesesAAtualizar.add(dataATestar);
     }
 
     // pois queremos as datas na ordem decrescente
