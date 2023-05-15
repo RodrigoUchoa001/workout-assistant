@@ -19,13 +19,13 @@ class MesesAindaNaoPreenchidosController extends ChangeNotifier {
     DateTime dataATestar = dataDaUltimaAtualizacao;
 
     while (temUmMesDeDiferenca(dataATestar, DateTime.now())) {
-      mesesAAtualizar.add(dataATestar);
-
       dataATestar = DateTime(
         dataATestar.year,
         dataATestar.month + 1,
         dataATestar.day,
       );
+
+      mesesAAtualizar.add(dataATestar);
     }
 
     // pois queremos as datas na ordem decrescente
