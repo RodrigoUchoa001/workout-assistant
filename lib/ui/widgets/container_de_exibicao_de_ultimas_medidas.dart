@@ -25,7 +25,7 @@ class ContainerDeExibicaoDeUltimasMedidas extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 2),
                   child: Text(
-                    formatarDataEHora(medidaDoMes.dataDasMedidas),
+                    formatarData(medidaDoMes.dataDasMedidas),
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontWeight: FontWeight.normal,
                           fontSize: 20,
