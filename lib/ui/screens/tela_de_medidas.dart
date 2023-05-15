@@ -16,7 +16,7 @@ class TelaDeMedidas extends StatefulWidget {
 }
 
 class _TelaDeMedidasState extends State<TelaDeMedidas> {
-  List<Widget> meses = [];
+  // List<Widget> meses = [];
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +32,7 @@ class _TelaDeMedidasState extends State<TelaDeMedidas> {
             ),
           ),
           //
-          ListView.builder(
-            itemCount: getMesesAPreencher(context).length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return meses[index];
-            },
-          ),
+          getMesesAPreencher(context),
           //
           FutureBuilder(
             future: _getListaDeMedidas(context),
@@ -92,48 +85,43 @@ class _TelaDeMedidasState extends State<TelaDeMedidas> {
     );
   }
 
-  List<Widget> getMesesAPreencher(BuildContext context) {
+  Widget getMesesAPreencher(BuildContext context) {
     final mesesAPreencherController =
         Provider.of<MesesAindaNaoPreenchidosController>(context, listen: false);
 
     debugPrint('${mesesAPreencherController.mesesAAtualizar}');
 
-    meses.clear();
-    for (var mesAPrencher in mesesAPreencherController.mesesAAtualizar) {
-      meses.add(
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: ContainerDeInfo(
-            altura: 120,
-            corDeFundo: Theme.of(context).focusColor,
-            conteudo: ConteudoDoContainerDeInfoComIcone(
-              icone: Icons.edit,
-              titulo: 'Este mês ainda não foi atualizado:',
-              subtitulo: '${mesAPrencher.month}/${mesAPrencher.year}',
-              acao: TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          TelaDeAddMedidasNew(dataPadrao: mesAPrencher),
-                    ),
-                  );
-                },
-                style: const ButtonStyle(
-                  backgroundColor:
-                      MaterialStatePropertyAll<Color>(Colors.black),
+    DateTime mesAPreencher = mesesAPreencherController.mesesAAtualizar[0];
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: ContainerDeInfo(
+        altura: 120,
+        corDeFundo: Theme.of(context).focusColor,
+        conteudo: ConteudoDoContainerDeInfoComIcone(
+          icone: Icons.edit,
+          titulo: 'Este mês ainda não foi atualizado:',
+          subtitulo: '${mesAPreencher.month}/${mesAPreencher.year}',
+          acao: TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      TelaDeAddMedidasNew(dataPadrao: mesAPreencher),
                 ),
-                child: const Text(
-                  'Inserir novos dados desse mês',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
+              );
+            },
+            style: const ButtonStyle(
+              backgroundColor: MaterialStatePropertyAll<Color>(Colors.black),
+            ),
+            child: const Text(
+              'Inserir novos dados desse mês',
+              style: TextStyle(color: Colors.white),
             ),
           ),
         ),
-      );
-    }
-    return meses;
+      ),
+    );
   }
 }
