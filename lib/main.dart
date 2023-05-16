@@ -8,6 +8,7 @@ import 'package:measure_tracker/ui/change_providers/tema_provider.dart';
 import 'package:measure_tracker/ui/screens/tela_da_bottom_nav_bar.dart';
 import 'package:measure_tracker/ui/screens/tela_de_add_medidas_new.dart';
 import 'package:measure_tracker/utils/meses_ainda_nao_preenchidos_controller.dart';
+import 'package:measure_tracker/utils/set_ultima_data_atualizada.dart';
 import 'package:provider/provider.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -65,18 +66,5 @@ class MyApp extends StatelessWidget {
         );
       },
     );
-  }
-
-  void setUltimaDataAtualizada(BuildContext context) async {
-    final providerMedidas = Provider.of<BancoDeDadosMetodos>(context);
-    List<MedidasDoMes> medidasDoMes = await providerMedidas.getMedidasDoMes();
-
-    final providerMesesAAtualizarController =
-        Provider.of<MesesAindaNaoPreenchidosController>(context, listen: false);
-
-    if (medidasDoMes.isNotEmpty) {
-      providerMesesAAtualizarController.setMesesAindaNaoPreenchidosController(
-          medidasDoMes[0].dataDasMedidas);
-    }
   }
 }
